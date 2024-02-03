@@ -7,18 +7,22 @@
   :root {
     --text: #1d2108;
     --background: #fafbef;
+    --background-accent: #edf0e0;
     --primary: #b9cd37;
     --secondary: #92e3af;
     --accent: #68d9c3;
+    --accent2: #9f6e5b;
   }
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #f3f7de;
     --background: #0f1004;
+    --background-accent: #111305;
     --primary: #b4c832;
     --secondary: #1c6d39;
     --accent: #269780;
+    --accent2: #a47461;
   }
 }
 
@@ -64,11 +68,14 @@ body {
 #navbar {
   position: fixed;
   height: calc(100% - var(--header-height));
-  left: 0; 
   width: var(--sidebar-width);
+  left: 0; 
   padding-block: 12.5vh;
-  margin-left: 1rem;
+  padding-left: 1rem;
+  background: var(--background-accent);
+  box-shadow: 10px 1px 10px var(--background-accent); 
 
+  z-index: -1;
   transition: width 250ms;
 }
 #navbar::after {
@@ -103,6 +110,7 @@ body {
 .navlink{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 1.6rem;
   padding: 1.5rem;
   height: 100%;
@@ -132,11 +140,17 @@ body {
 
 /* CONTENT AREA DEFAULTS */
 #content-wrapper {
-  flex: 1;
+  border: 1px solid green;
 }
 
 /* FOOTER */
 footer {
-  border: 1px solid hotpink;
-  height: var(--header-height);
+  position: sticky;
+  display: flex;
+  justify-content: space-evenly;
+  background: var(--accent2);
+  color: var(--background);
+  width: 30vw;
+  height: 5vh;
+  margin: 0 auto 1.5rem auto;
 }
