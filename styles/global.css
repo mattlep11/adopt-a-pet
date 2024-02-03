@@ -44,10 +44,12 @@ a {
 body {
   --header-height: 10vh;
   --sidebar-width: 12.5vw;
+  --footer-height: 5vh;
   display: flex;
   flex-direction: column;
   margin-top: var(--header-height);
   margin-left: calc(var(--sidebar-width) + 1.5rem);
+  margin-bottom: var(--footer-height);
   background: var(--background);
 }
 
@@ -145,12 +147,21 @@ body {
 
 /* FOOTER */
 footer {
-  position: sticky;
+  position: fixed;
+  bottom: 0;
   display: flex;
-  justify-content: space-evenly;
-  background: var(--accent2);
-  color: var(--background);
-  width: 30vw;
-  height: 5vh;
-  margin: 0 auto 1.5rem auto;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  height: var(--footer-height);
+  width: 100%;
+  margin-left: -5rem;
+  background: var(--background-accent);
+  font-size: 1.4rem;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+footer a:nth-of-type(2n) {
+  font-size: 3rem;
 }
