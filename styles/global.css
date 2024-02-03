@@ -32,13 +32,18 @@
 
 html, body { height: 100%; }
 
+a { 
+  text-decoration: none; 
+  color: inherit;
+}
+
 body {
   --header-height: 10vh;
-  --sidebar-width: 17.5vw;
+  --sidebar-width: 12.5vw;
   display: flex;
   flex-direction: column;
   margin-top: var(--header-height);
-  margin-left: var(--sidebar-width);
+  margin-left: calc(var(--sidebar-width) + 1.5rem);
   background: var(--background);
 }
 
@@ -47,6 +52,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
   height: var(--header-height);
   width: 100%;
   background: var(--background);
@@ -56,14 +63,75 @@ body {
 /* NAVIGATION BAR */
 #navbar {
   position: fixed;
-  left: 0; height: 100%;
-  border: 1px solid orange;
+  height: calc(100% - var(--header-height));
+  left: 0; 
   width: var(--sidebar-width);
+  padding-block: 12.5vh;
+  margin-left: 1rem;
+
+  transition: width 250ms;
+}
+#navbar::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: -2rem;
+  height: 25%;
+  width: 1rem;
+  background: var(--accent);
+  border-radius: 2px;
+  transform-origin: center;
+  pointer-events: none;
+
+  transition: transform 250ms;
+}
+#navbar:hover {
+  width: 14.5vw;
+}
+#navbar:hover::after {
+  transform: scaleY(1.75);
+}
+#navbar > ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+.navlink{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  padding: 1.5rem;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+  
+  transition: padding 250ms, filter 250ms;
+}
+.navlink:hover {
+  padding-block: 2.5rem;
+  filter: hue-rotate(-15deg);
+}
+.navlink.active {
+  background: var(--primary);
+  color: var(--background);
+}
+.navlink.inactive {
+  background: var(--secondary)
+}
+.navlink i {
+  opacity: 0;
+  transition: opacity 250ms;
+}
+#navbar:hover .navlink i {
+  opacity: 1;
 }
 
 /* CONTENT AREA DEFAULTS */
 #content-wrapper {
-  border: 1px solid green;
   flex: 1;
 }
 
