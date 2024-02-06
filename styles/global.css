@@ -227,3 +227,6 @@ footer a:hover {
 footer a:nth-of-type(2n) {
   font-size: 3rem;
 }
+footer a.active {
+  font-weight: bold;
+}
