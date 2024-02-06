@@ -202,7 +202,8 @@ body {
 /* CONTENT AREA DEFAULTS */
 #content-wrapper {
   height: 100%;
-  /* border: 1px solid green; */
+  padding: 4rem 2rem 2rem 4rem;
+  overflow: auto;
 }
 
 /* FOOTER */
