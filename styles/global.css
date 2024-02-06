@@ -6,23 +6,26 @@
 @media (prefers-color-scheme: light) {
   :root {
     --text: #1d2108;
+    --logo-contrast-text: #1d2108;
     --background: #fafbef;
     --background-accent: #edf0e0;
     --primary: #b9cd37;
     --secondary: #92e3af;
     --accent: #68d9c3;
-    --accent2: #9f6e5b;
+  }
+  .lm-swap-contrast {
+    color: var(--background);
   }
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #f3f7de;
+    --logo-contrast-text: var(--text);
     --background: #0f1004;
     --background-accent: #111305;
     --primary: #b4c832;
     --secondary: #1c6d39;
     --accent: #269780;
-    --accent2: #a47461;
   }
 }
 
@@ -44,9 +47,10 @@ a {
 body {
   --header-height: 10vh;
   --sidebar-width: 12.5vw;
+  --sidebar-shadow-width: 1.5rem;
   --footer-height: 5vh;
   padding-top: var(--header-height);
-  padding-left: calc(var(--sidebar-width) + 1.5rem);
+  padding-left: calc(var(--sidebar-width));
   padding-bottom: var(--footer-height);
   background: var(--background);
 }
@@ -55,11 +59,52 @@ body {
 #web-header {
   position: fixed;
   top: 0;
-  margin-left: -1.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8vh;
+  font-size: 1.4rem;
+  text-align: center;
+  word-spacing: 5px;
   height: var(--header-height);
-  width: 100%;
+  color: var(--logo-contrast-text);
+  font-weight: bold;
+  font-family: "Libre Baskeville", "Times New Roman", sans-serif;
   background: var(--background);
-  border: 1px solid red;
+}
+#web-header > a {
+  position: relative;
+}
+#logo-wrapper {
+  position: absolute;
+  z-index: -1;
+  top: -3.5rem; 
+  right: -0.95rem;
+}
+.logo-head {
+  margin-bottom: 1.25rem;
+}
+.logo {
+  position: relative;
+  height: 7.5rem;
+  z-index: -1;
+}
+.logo:first-of-type {
+  /* dog picture */
+  margin-left: -5rem;
+  margin-top: 0.75rem;
+  height: 8rem;
+}
+.logo:last-of-type {
+  /* cat picture */
+  transform: scaleX(-1);
+  margin-left: -12rem;
+  z-index: -2;
+}
+.logo-head {
+  font-size: 3.6rem;
 }
 
 /* NAVIGATION BAR */
@@ -72,8 +117,8 @@ body {
   padding-block: 12.5vh;
   padding-left: 1rem;
   background: var(--background-accent);
-  box-shadow: 10px 1px 10px var(--background-accent); 
-  border: 1px solid red;
+  box-shadow: 10px 0 var(--sidebar-shadow-width) var(--background-accent); 
+  z-index: 99;
   transition: width 250ms;
 }
 #navbar::after {
@@ -164,16 +209,16 @@ body {
 footer {
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding-inline: 35%;
+  justify-content: space-between;
   gap: 2rem;
   height: var(--footer-height);
-  width: 100%;
-  margin-left: -5rem;
   background: var(--background-accent);
   font-size: 1.4rem;
-  z-index: -99;
 }
 footer a:hover {
   text-decoration: underline;
