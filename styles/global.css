@@ -6,7 +6,6 @@
 @media (prefers-color-scheme: light) {
   :root {
     --text: #1d2108;
-    --logo-contrast-text: #1d2108;
     --background: #fafbef;
     --background-accent: #edf0e0;
     --primary: #b9cd37;
@@ -15,12 +14,12 @@
   }
   .lm-swap-contrast {
     color: var(--background);
+    text-shadow: 3px 2px var(--text);
   }
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #f3f7de;
-    --logo-contrast-text: var(--text);
     --background: #0f1004;
     --background-accent: #111305;
     --primary: #b4c832;
@@ -59,17 +58,16 @@ body {
 #web-header {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-top: 8vh;
+  height: var(--header-height);
+  width: calc(100% - var(--sidebar-width) + var(--sidebar-shadow-width));
   font-size: 1.4rem;
   text-align: center;
   word-spacing: 5px;
-  height: var(--header-height);
-  color: var(--logo-contrast-text);
+  text-shadow: 3px 2px var(--background-accent);
   font-weight: bold;
   font-family: "Libre Baskeville", "Times New Roman", sans-serif;
   background: var(--background);
@@ -210,14 +208,13 @@ body {
 footer {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   align-items: center;
   padding-inline: 35%;
   justify-content: space-between;
   gap: 2rem;
   height: var(--footer-height);
+  width: calc(100% - var(--sidebar-width) + var(--sidebar-shadow-width));
   background: var(--background-accent);
   font-size: 1.4rem;
 }

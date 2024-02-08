@@ -1,0 +1,16 @@
+#content-wrapper {
+  display: grid;
+  place-items: center;
+}
+
+.construction-img {
+  position: absolute;
+  height: 55vh;
+  opacity: 40%;
+  margin-bottom: 10vh;
+  z-index: -1;
+}
+.construction-text {
+  font-size: 24px;
+  text-shadow: 0 3px var(--background);
+}
