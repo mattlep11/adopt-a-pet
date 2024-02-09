@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopt A Pet</title>
+  <!-- STYLES -->
   <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/pet-finder.css">
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
-  <title>Adopt A Pet</title>
 </head>
 <body>
   <header id="web-header">
@@ -69,7 +72,104 @@
     </ul>
   </nav>
   <main id="content-wrapper">
-    hello world
+    <img  id="form-img" src="../assets/form_undraw.svg" alt="Two papers on top of each other.">
+    <h2>Please fill out the following to help you find a new best friend!</h2>
+    <form action="#" method="get">
+      <fieldset class="no-border">
+        <legend class="question-header">Animal of choice:</legend>
+        <label for="cat">
+          Cat <input required type="radio" name="animal-choice" value="cat" id="cat">
+        </label>
+        <label for="dog">
+          Dog <input type="radio" name="animal-choice" value="dog" id="dog">
+        </label>
+      </fieldset>
+      <hr>
+      <fieldset class="no-border">
+        <legend class="question-header">Preferred breed:</legend>
+        <p class="inline-desc">Cats:</p>
+        <div class="breed-list">
+          <label for="tabby">
+            Tabby Cat
+            <input type="checkbox" name="pref-breed" value="tabby" id="tabby">
+          </label>
+          <label for="shorthair">
+            Shorthair Cat
+            <input type="checkbox" name="pref-breed" value="shorthair" id="shorthair">
+          </label>
+          <label for="longhair">
+            Longhair Cat
+            <input type="checkbox" name="pref-breed" value="longhair" id="longhair">
+          </label>
+        </div>
+        <br>
+        <p class="inline-desc">Dogs:</p>
+        <div class="breed-list">
+          <label for="german">
+            German Shepherd
+            <input type="checkbox" name="pref-breed" value="german" id="german">
+          </label>
+          <label for="pug">
+            Pug
+            <input type="checkbox" name="pref-breed" value="pug" id="pug">
+          </label>
+          <label for="poodle">
+            Poodle
+            <input type="checkbox" name="pref-breed" value="poodle" id="poodle">
+          </label>
+        </div>
+        <br>
+        <label for="no-pref-breed">
+          No preference
+          <input type="checkbox" name="pref-breed" value="no-pref" id="no-pref-breed">
+        </label>
+      </fieldset>
+      <hr>
+      <label for="age-selector" class="question-header">
+        Preferred age:
+        <select required name="pref-age" id="age-selector">
+          <option value="<1">1 or younger</option>
+          <option value="2-4">2 - 4</option>
+          <option value="4-7">4 - 7</option>
+          <option value="8+">8+</option>
+          <option value="no-pref">No preference</option>
+        </select>
+      </label>
+      <hr>
+      <fieldset class="no-border">
+        <legend class="question-header">Preferred gender:</legend>
+        <label for="male">
+          Male <input required type="radio" name="gender" value="male" id="male">
+        </label>
+        <label for="female">
+          Female <input type="radio" name="gender" value="female" id="female">
+        </label>
+        <label for="no-pref-gender">
+          No preference <input type="radio" name="gender" value="no-pref" id="no-pref-gender">
+        </label>
+      </fieldset>
+      <hr>
+      <fieldset class="no-border">
+        <legend class="question-header">Your new pet needs to get along with... (leave blank for none)</legend>
+        <label for="dogs">
+          Other Dogs
+          <input type="checkbox" name="gets-along-width" value="dogs" id="dogs">
+        </label>
+        <label for="cats">
+          Other Cats
+          <input type="checkbox" name="gets-along-width" value="cats" id="cats">
+        </label>
+        <label for="kids">
+          Children
+          <input type="checkbox" name="gets-along-width" value="kids" id="kids">
+        </label>
+      </fieldset>
+      <hr>
+      <div id="form-controls">
+        <input type="submit" value="Submit Form">
+        <input type="reset" value="Clear Form">
+      </div>
+    </form>
   </main>
   <footer>
     <a href="./privacy.html">Privacy Statement</a>
