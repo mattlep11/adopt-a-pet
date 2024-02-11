@@ -112,8 +112,7 @@ body {
   width: var(--sidebar-width);
   left: 0; 
   margin-top: calc(-1 * var(--header-height));
-  padding-block: 12.5vh;
-  padding-left: 1rem;
+  padding: 12.5vh 1rem;
   background: var(--background-accent);
   box-shadow: 10px 0 var(--sidebar-shadow-width) var(--background-accent); 
   z-index: 99;
@@ -125,7 +124,7 @@ body {
   margin: auto;
   top: 0;
   bottom: 0;
-  right: -2rem;
+  right: -1rem;
   height: 25%;
   width: 1rem;
   background: var(--accent);
@@ -190,6 +189,32 @@ body {
 #navbar:hover .navlink i {
   opacity: 1;
 }
+@media (max-device-width: 1340px) {
+  .navlink {
+    font-size: 1.3rem;
+  }
+}
+@media (max-device-width: 1020px) {
+  .navlink.inactive, 
+  .navlink.active {
+    position: relative;
+    color: transparent;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .navlink i {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    opacity: 1;
+    font-size: 1.8rem;
+    color: var(--text);
+  }
+  .navlink.active i {
+    color: var(--background);
+  }
+}
 
 @keyframes spin-bone {
   to {
@@ -226,4 +251,9 @@ footer a:nth-of-type(2n) {
 }
 footer a.active {
   font-weight: bold;
+}
+@media (max-device-width: 910px) {
+  footer {
+    padding-inline: 22%;
+  }
 }
