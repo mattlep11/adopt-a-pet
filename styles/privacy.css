@@ -1,0 +1,28 @@
+#content-wrapper {
+  --policy-font-size: 1.3rem;
+  font-size: var(--policy-font-size);
+  text-align: justify;
+}
+#content-wrapper p {
+  margin-block: var(--policy-font-size);
+  max-width: 80%;
+}
+#content-wrapper h2 {
+  margin-block: calc(var(--policy-font-size) * 1.75);
+}
+#content-wrapper li {
+  margin-left: 2.75rem;
+  max-width: 80%;
+}
+
+#policy-info {
+  font-size: 1rem;
+  color: rgb(120, 120, 120);
+}
+#policy-info p {
+  margin-block: 0;
+}
+
+.italicized {
+  font-style: italic;
+}
