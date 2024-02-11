@@ -131,7 +131,6 @@ body {
   border-radius: 2px;
   transform-origin: center;
   pointer-events: none;
-
   transition: transform 250ms;
 }
 #navbar:hover {
@@ -168,6 +167,7 @@ body {
   height: 100%;
   width: 100%;
   border-radius: 4px;
+  background: var(--secondary);
   
   transition: padding 250ms, filter 250ms;
 }
@@ -178,9 +178,6 @@ body {
 .navlink.active {
   background: var(--primary);
   color: var(--background);
-}
-.navlink.inactive {
-  background: var(--secondary)
 }
 .navlink i {
   opacity: 0;
@@ -195,8 +192,7 @@ body {
   }
 }
 @media (max-device-width: 1020px) {
-  .navlink.inactive, 
-  .navlink.active {
+  .navlink {
     position: relative;
     color: transparent;
     user-select: none;
