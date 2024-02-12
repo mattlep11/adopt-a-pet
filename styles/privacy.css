@@ -1,5 +1,5 @@
 #content-wrapper {
-  --policy-font-size: 1.3rem;
+  --policy-font-size: 1.5rem;
   font-size: var(--policy-font-size);
   text-align: justify;
 }
