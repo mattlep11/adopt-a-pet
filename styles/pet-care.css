@@ -1,0 +1,73 @@
+#content-wrapper {
+  font-size: 1.4rem;
+}
+#content-wrapper h1 {
+  margin-bottom: 2.8rem;
+}
+#content-wrapper p {
+  margin-block: 0.75rem;
+  max-width: 80%;
+  text-align: justify;
+}
+#content-wrapper li {
+  margin-left: 3.5rem;
+  max-width: 75%;
+  padding-left: 2rem;
+  text-indent: -2rem;
+}
+.section-header {
+  margin-block: 2.4rem;
+}
+
+.section-with-img {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-right: 5vw;
+}
+.section-with-img > div {
+  max-width: 65%;
+}
+.tutorial-img {
+  max-height: 35vh;
+  margin-block: 2vh;
+}
+@media (max-width: 1100px) {
+  #content-wrapper {
+    padding-inline: 4rem;
+  }
+  #content-wrapper h1,
+  #content-wrapper h2 {
+    text-align: center;
+  }
+  #content-wrapper p,
+  #content-wrapper li {
+    margin: 0 auto;
+  }
+
+  .section-with-img {
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    margin: 0;
+  }
+  .section-with-img > div {
+    max-width: 100%;
+  }
+}
+
+#content-wrapper p.credit {
+  max-width: 90%;
+  margin-top: 8rem;
+  text-align: right;
+}
+.source-link {
+  color: skyblue;
+  margin-left: 0.5rem;
+}
+.source-link:hover {
+  text-decoration: underline;
+}
+.source-link:active {
+  filter: hue-rotate(30deg);
+}

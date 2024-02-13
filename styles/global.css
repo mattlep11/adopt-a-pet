@@ -194,7 +194,7 @@ body {
 @media (max-width: 1020px) {
   .navlink {
     position: relative;
-    color: transparent;
+    color: transparent !important;
     user-select: none;
     white-space: nowrap;
     overflow: hidden;
