@@ -1,9 +1,21 @@
 #content-wrapper {
   font-size: 1.3rem;
+  text-shadow: 0 1px 2px var(--background);
 }
-#content-wrapper > h2 {
+#content-wrapper h2 {
   font-size: 2.2rem;
   margin-bottom: 2rem;
+  
+}
+#content-wrapper h3 {
+  font-size: 1.8rem;
+}
+h3 + h4 {
+  margin-bottom: 2rem;
+  text-indent: 3rem;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1.4rem;
 }
 
 input, select { cursor: pointer}
@@ -12,19 +24,39 @@ input[type="radio"],
 input[type="checkbox"] {
   margin-left: 0.25rem;
 }
+input[type="text"],
+input[type="email"] {
+  cursor: initial;
+}
 
-#form-img {
+textarea {
+  font-family: inherit;
+  font-size: 1.2rem;
+  resize: none;
+  margin-top: 0.75rem;
+}
+
+#form-img,
+#giveaway-img {
   position: absolute;
   height: 60%;
   right: 11%;
   margin-top: 5vh;
   opacity: 40%;
-  background: var(--background);
   z-index: -1;
+}
+#giveaway-img {
+  height: 50%;
+  top: 50%;
+  opacity: 45%;
+  transform: translateY(-50%);
 }
 @media (prefers-color-scheme: light) {
   #form-img {
     opacity: 55%;
+  }
+  #giveaway-img {
+    opacity: 75%;
   }
 }
 
@@ -53,14 +85,19 @@ hr {
   max-width: 55rem;
   z-index: -5;
 }
+.long {
+  background: var(--primary);
+  border-radius: 2px
+}
+
+br {
+  margin-bottom: 1.25rem;
+}
 
 .question-header {
   font-weight: 600;
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
-}
-label {
-  text-shadow: 0 1px 2px var(--background);
 }
 label.question-header select {
   margin-left: 1rem;
