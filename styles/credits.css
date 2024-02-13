@@ -1,0 +1,26 @@
+#content-wrapper {
+  font-size: 1.4rem;
+}
+#content-wrapper h1 {
+  margin-bottom: 2.8rem;
+}
+#content-wrapper h2 {
+  margin-block: 4rem 2rem;
+}
+#content-wrapper p {
+  margin-block: 0.75rem;
+  max-width: 75%;
+}
+#content-wrapper ul {
+  margin-left: 3rem;
+}
+#content-wrapper li {
+  margin-bottom: 0.75rem;
+}
+#content-wrapper a {
+  color: skyblue;
+  text-decoration: underline;
+}
+#content-wrapper a:active {
+  filter: hue-rotate(30deg);
+}
