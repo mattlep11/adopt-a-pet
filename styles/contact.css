@@ -1,0 +1,30 @@
+#content-wrapper {
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+}
+
+#contact-wrapper {
+  display: flex;
+  align-items: start;
+  gap: 6vw;
+  max-height: 40vh;
+}
+#contact-wrapper h2 {
+  text-decoration: underline;
+  margin-bottom: 3vh;
+}
+p + h3 {
+  margin-top: 1.5vh;
+}
+
+#left-contact {
+  justify-self: left;
+}
+
+#divider {
+  height: 30vh;
+  width: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
