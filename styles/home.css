@@ -12,6 +12,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8rem;
+  text-align: center;
 }
 #content-wrapper i {
   margin-right: 0.5rem;
@@ -28,8 +29,9 @@
   z-index: -1;
 }
 
-#hero-banner {
+#content-wrapper #hero-banner {
   position: relative;
+  font-weight: bold;
   font-size: 4.4rem;
   margin-bottom: 0.75vh;
 }
@@ -37,11 +39,7 @@
   font-size: 1.8rem;
 }
 
-section {
-  text-align: center;
-}
-
-article {
+#mission-statement {
   max-width: 60rem;
   text-align: justify;
   font-size: 1.5rem;
@@ -49,19 +47,16 @@ article {
 }
 
 .redirect {
+  display: block;
   margin-top: 1.25rem;
+  padding: 1rem;
   background: var(--primary);
   color: var(--background);
   font-size: 1.6rem;
-  font-family: inherit;
+  text-shadow: none;
   border-radius: 2px;
-  border: none;
   cursor: pointer;
   transition: filter 150ms;
-}
-.redirect > a {
-  display: block;
-  padding: 1rem 1.75rem;
 }
 .redirect:hover {
   filter: hue-rotate(5deg);
@@ -143,7 +138,7 @@ article {
   #hero-subtext {
     font-size: 1.8rem;
   }
-  #hero-banner, #hero-subtext, section, article {
+  #hero-banner, #hero-subtext, #mission-statement {
     text-align: center;
     padding: 0 !important;
     margin: 0 !important;
