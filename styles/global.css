@@ -59,7 +59,7 @@ body {
   position: fixed;
   top: 0;
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
   padding-top: 2rem;
   height: var(--header-height);
