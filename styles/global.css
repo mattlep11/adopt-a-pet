@@ -104,6 +104,13 @@ body {
 .logo-head {
   font-size: 3.6rem;
 }
+.datetime {
+  opacity: 0.55;
+  transition: opacity 200ms;
+}
+#web-header > a:hover .datetime {
+  opacity: 0.9;
+}
 
 /* NAVIGATION BAR */
 #navbar {
