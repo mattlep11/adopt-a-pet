@@ -95,7 +95,7 @@ function cleanErrorClasses(invalidFields) {
   for (let name in INPUT_TYPES) {
     if (!invalidFields.includes(name)) {
       let field = document.getElementById(name);
-      
+
       // ensure this page actually has this input field
       if (field != null)
         document.getElementById(name).classList.remove(INVALID_INPUT_CLASS);
@@ -103,23 +103,30 @@ function cleanErrorClasses(invalidFields) {
   }
 }
 
+// creates the error message to display to the user
 function composeErrorMessage(errors) {
-  const unchecked = "Please ensure all radios or checkboxes are checked.";
-  const unfilled = "Please ensure all textfields " 
+  const unchecked = "Please ensure all radios and checkboxes are checked.";
+  const unfilled = "Please ensure all textfields and dropdowns " 
     + "are filled with accurate information";
   const invalid = "Please ensure that your email follows the correct format";
 
   let errorMsg = "Invalid input has been detected. See the following:";
   if (errors.includes("unchecked"))
-    errorMsg += "\n- " + unchecked;
+    errorMsg += "<br>- " + unchecked;
 
   if (errors.includes("unfilled"))
-    errorMsg += "\n- " + unfilled;
+    errorMsg += "<br>- " + unfilled;
 
   if (errors.includes("invalid"))
-    errorMsg += "\n- " + invalid
+    errorMsg += "<br>- " + invalid
 
   return errorMsg;
+}
+
+function displayErrorMessage(msg) {
+  let node = document.getElementById("error-msg");
+  node.style.display = "block";
+  node.innerHTML = msg;
 }
 
 // add a listener to disable all checkboxes if a no-preference option is used
@@ -135,11 +142,11 @@ FORM.addEventListener("submit", e => {
   if (!validationStatus.isValid) {
     // prevent the submission event if the input wasn't valid
     e.preventDefault();
-    console.log("Invalid input field detected.");
-
-    console.log(composeErrorMessage(validationStatus.errorTypes))
+    let errorMsg = composeErrorMessage(validationStatus.errorTypes);
+    console.log("Invalid input field detected.\n" + errorMsg);
 
     displayErrors(validationStatus.fieldNames);
+    displayErrorMessage(errorMsg);
   }
 
   // remove the error class from everything that has been since validated

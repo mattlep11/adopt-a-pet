@@ -141,3 +141,32 @@ legend.question-header ~ * {
 .error-detected .question-header {
   color: rgb(150, 24, 24);
 }
+
+#error-msg {
+  display: none;
+  margin-top: 1.25rem;
+  padding-inline: 1.25rem;
+  background: rgba(151, 148, 148, 0.6);
+  opacity: 0.75;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 55rem;
+
+  transition: opacity 200ms;
+}
+#error-msg:hover {
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: light) {
+  .error-detected legend,
+  .error-detected .question-header {
+    color: rgb(126, 2, 2);
+  }
+
+  #error-msg {
+    background: rgba(59, 58, 58, 0.6);
+    opacity: 0.9;
+  }
+}
