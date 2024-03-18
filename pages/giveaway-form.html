@@ -79,117 +79,133 @@
     <img id="giveaway-img" src="../assets/adoption_undraw.svg" alt="A man standing next to a poster of a cat.">
     <h2>Looking to put up your pet for adoption? Fill out the form below.</h2>
     <form id="pet-form" action="#" method="#">
-      <fieldset class="no-border">
-        <legend class="question-header">What type of animal?</legend>
-        <label for="cat">
-          Cat <input type="radio" name="animal-type" value="cat" id="cat">
-        </label>
-        <label for="dog">
-          Dog <input type="radio" name="animal-type" value="dog" id="dog">
-        </label>
-      </fieldset>
+      <div id="animal-type">
+        <fieldset class="no-border">
+          <legend class="question-header">What type of animal?</legend>
+          <label for="cat">
+            Cat <input type="radio" name="animal-type" value="cat" id="cat">
+          </label>
+          <label for="dog">
+            Dog <input type="radio" name="animal-type" value="dog" id="dog">
+          </label>
+        </fieldset>
+      </div>
       <hr>
-      <fieldset class="no-border">
-        <legend class="question-header">Their breed:</legend>
-        <p class="inline-desc">Cats:</p>
-        <div class="breed-list">
-          <label for="tabby">
-            Tabby Cat
-            <input type="checkbox" name="breed" value="tabby" id="tabby">
+      <div id="breed">
+        <fieldset class="no-border">
+          <legend class="question-header">Their breed:</legend>
+          <p class="inline-desc">Cats:</p>
+          <div class="breed-list">
+            <label for="tabby">
+              Tabby Cat
+              <input type="checkbox" name="breed" value="tabby" id="tabby">
+            </label>
+            <label for="shorthair">
+              Shorthair Cat
+              <input type="checkbox" name="breed" value="shorthair" id="shorthair">
+            </label>
+            <label for="longhair">
+              Longhair Cat
+              <input type="checkbox" name="breed" value="longhair" id="longhair">
+            </label>
+          </div>
+          <br>
+          <p class="inline-desc">Dogs:</p>
+          <div class="breed-list">
+            <label for="german">
+              German Shepherd
+              <input type="checkbox" name="breed" value="german" id="german">
+            </label>
+            <label for="pug">
+              Pug
+              <input type="checkbox" name="breed" value="pug" id="pug">
+            </label>
+            <label for="poodle">
+              Poodle
+              <input type="checkbox" name="breed" value="poodle" id="poodle">
+            </label>
+          </div>
+          <br>
+          <label for="mixed">
+            Mixed
+            <input type="checkbox" name="breed" value="mixed" id="mixed">
           </label>
-          <label for="shorthair">
-            Shorthair Cat
-            <input type="checkbox" name="breed" value="shorthair" id="shorthair">
+          <label for="not-found">
+            Not listed
+            <input type="checkbox" name="breed" value="not-found" id="not-found" class="none-chosen">
           </label>
-          <label for="longhair">
-            Longhair Cat
-            <input type="checkbox" name="breed" value="longhair" id="longhair">
-          </label>
-        </div>
-        <br>
-        <p class="inline-desc">Dogs:</p>
-        <div class="breed-list">
-          <label for="german">
-            German Shepherd
-            <input type="checkbox" name="breed" value="german" id="german">
-          </label>
-          <label for="pug">
-            Pug
-            <input type="checkbox" name="breed" value="pug" id="pug">
-          </label>
-          <label for="poodle">
-            Poodle
-            <input type="checkbox" name="breed" value="poodle" id="poodle">
-          </label>
-        </div>
-        <br>
-        <label for="mixed">
-          Mixed
-          <input type="checkbox" name="breed" value="mixed" id="mixed">
-        </label>
-        <label for="not-found">
-          Not listed
-          <input type="checkbox" name="breed" value="not-found" id="not-found" class="none-chosen">
-        </label>
-      </fieldset>
+        </fieldset>
+      </div>
       <hr>
-      <label for="age-selector" class="question-header">
-        Their age:
-        <select name="age" id="age-selector">
-          <option value="">Select an age range</option>
-          <option value="<1">1 or younger</option>
-          <option value="2-4">2 - 4</option>
-          <option value="4-7">4 - 7</option>
-          <option value="8+">8+</option>
-        </select>
-      </label>
+      <div id="age">
+        <label for="age-selector" class="question-header">
+          Their age:
+          <select name="age" id="age-selector">
+            <option value="">Select an age range</option>
+            <option value="<1">1 or younger</option>
+            <option value="2-4">2 - 4</option>
+            <option value="4-7">4 - 7</option>
+            <option value="8+">8+</option>
+          </select>
+        </label>
+      </div>
       <hr>
-      <fieldset class="no-border">
-        <legend class="question-header">Their gender:</legend>
-        <label for="male">
-          Male <input type="radio" name="gender" value="male" id="male">
-        </label>
-        <label for="female">
-          Female <input type="radio" name="gender" value="female" id="female">
-        </label>
-      </fieldset>
+      <div id="gender">
+        <fieldset class="no-border">
+          <legend class="question-header">Their gender:</legend>
+          <label for="male">
+            Male <input type="radio" name="gender" value="male" id="male">
+          </label>
+          <label for="female">
+            Female <input type="radio" name="gender" value="female" id="female">
+          </label>
+        </fieldset>
+      </div>
       <hr>
-      <fieldset class="no-border">
-        <legend class="question-header">Does your animal behave well with...</legend>
-        <label for="dogs">
-          Other Dogs
-          <input type="checkbox" name="gets-along-with" value="dogs" id="dogs">
-        </label>
-        <label for="cats">
-          Other Cats
-          <input type="checkbox" name="gets-along-with" value="cats" id="cats">
-        </label>
-        <label for="kids">
-          Children
-          <input type="checkbox" name="gets-along-with" value="kids" id="kids">
-        </label>
-        <label for="none">
-          None / Don't Know
-          <input type="checkbox" name="gets-along-with" id="none" value="none" class="none-chosen">
-        </label>
-      </fieldset>
+      <div id="gets-along-with">
+        <fieldset class="no-border">
+          <legend class="question-header">Does your animal behave well with...</legend>
+          <label for="dogs">
+            Other Dogs
+            <input type="checkbox" name="gets-along-with" value="dogs" id="dogs">
+          </label>
+          <label for="cats">
+            Other Cats
+            <input type="checkbox" name="gets-along-with" value="cats" id="cats">
+          </label>
+          <label for="kids">
+            Children
+            <input type="checkbox" name="gets-along-with" value="kids" id="kids">
+          </label>
+          <label for="none">
+            None / Don't Know
+            <input type="checkbox" name="gets-along-with" id="none" value="none" class="none-chosen">
+          </label>
+        </fieldset>
+      </div>
       <hr>
-      <fieldset class="no-border">
-        <legend class="question-header">Tell us a little bit about your pet!</legend>
-        <textarea name="desc" id="animal-desc" maxlength="172" cols="40" rows="3" placeholder="Try to keep it brief so your description can fit on the listing."></textarea>
-      </fieldset>
+      <div id="desc">
+        <fieldset class="no-border">
+          <legend class="question-header">Tell us a little bit about your pet!</legend>
+          <textarea name="desc" id="animal-desc" maxlength="172" cols="40" rows="3" placeholder="Try to keep it brief so your description can fit on the listing."></textarea>
+        </fieldset>
+      </div>
       <hr class="long">
       <h3>To finish off, we need some of your personal information:</h3>
       <h4>This is simply to help us connect you with interested adoptees!</h4>
-      <label for="names" class="question-header">
-        Your first and last name:
-        <input type="text" name="owner-name" id="names">
-      </label>
+      <div id="owner-name">
+        <label for="names" class="question-header">
+          Your first and last name:
+          <input type="text" name="owner-name" id="names">
+        </label>
+      </div>
       <br>
-      <label for="email" class="question-header">
-        Your email address:
-        <input type="email" name="email" id="email">
-      </label>
+      <div id="email">
+        <label for="email" class="question-header">
+          Your email address:
+          <input type="email" name="email" id="email">
+        </label>
+      </div>
       <hr>
       <div id="form-controls">
         <input type="submit" value="Submit Form">

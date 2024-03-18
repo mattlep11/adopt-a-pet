@@ -41,26 +41,85 @@ function toggleCheckboxes(caller, checkboxes) {
 
 // validates all input fields in the input_types object based on their type
 function validateInputFields() {
-  let valid = true;
-  for (let name in INPUT_TYPES) {
-    let elementsToValidate = [...document.getElementsByName(name)];
-    let type = INPUT_TYPES[name];
-
-      // if this form does not contain that input field, skip to the next one
-      if (elementsToValidate == undefined || elementsToValidate.length === 0)
-        continue;
-    
-      if (type === "radio" || type === "checkbox")
-        valid = atLeastOneClicked(elementsToValidate);
-      else if (type === "select" || type === "text")
-        valid = elementsToValidate.every(el => validateTextInput(el));
-      else if (type === "email")
-        valid = elementsToValidate.every(el => validateEmail(el));
-
-    if (!valid) return false;
+  const status = {
+    isValid: true,
+    errorTypes: [],
+    fieldNames: []
   }
 
-  return valid;
+  for (let name in INPUT_TYPES) {
+    let type = INPUT_TYPES[name];
+    let elementsToValidate = [...document.getElementsByName(name)];
+    
+    // if this form does not have that input field, skip to the next one
+    if (elementsToValidate == undefined || elementsToValidate.length === 0)
+    continue;
+
+    let fieldIsValid;  // whether or not this field has valid input
+    let error;         // specifies error type if invalid
+  
+      if (type === "radio" || type === "checkbox") {
+        fieldIsValid = atLeastOneClicked(elementsToValidate);
+        error = "unchecked";
+      }
+      else if (type === "select" || type === "text") {
+        fieldIsValid = elementsToValidate.every(el => validateTextInput(el));
+        error = "unfilled";
+      }
+      else if (type === "email") {
+        fieldIsValid = elementsToValidate.every(el => validateEmail(el));
+        error = "invalid";
+      }
+
+    if (!fieldIsValid) {
+      status.isValid = false;
+      status.errorTypes.push(error);
+      status.fieldNames.push(name);
+    }
+  }
+
+  return status;
+}
+
+const INVALID_INPUT_CLASS = "error-detected";
+// each field is nested in a div with an ID equal to the form name
+// display a red error border around invalid fields 
+function displayErrors(invalidFields) {
+  for (let i = 0; i < invalidFields.length; i++) {
+    let field = document.getElementById(invalidFields[i]);
+    field.classList.add(INVALID_INPUT_CLASS);
+  }
+}
+
+function cleanErrorClasses(invalidFields) {
+  for (let name in INPUT_TYPES) {
+    if (!invalidFields.includes(name)) {
+      let field = document.getElementById(name);
+      
+      // ensure this page actually has this input field
+      if (field != null)
+        document.getElementById(name).classList.remove(INVALID_INPUT_CLASS);
+    }
+  }
+}
+
+function composeErrorMessage(errors) {
+  const unchecked = "Please ensure all radios or checkboxes are checked.";
+  const unfilled = "Please ensure all textfields " 
+    + "are filled with accurate information";
+  const invalid = "Please ensure that your email follows the correct format";
+
+  let errorMsg = "Invalid input has been detected. See the following:";
+  if (errors.includes("unchecked"))
+    errorMsg += "\n- " + unchecked;
+
+  if (errors.includes("unfilled"))
+    errorMsg += "\n- " + unfilled;
+
+  if (errors.includes("invalid"))
+    errorMsg += "\n- " + invalid
+
+  return errorMsg;
 }
 
 // add a listener to disable all checkboxes if a no-preference option is used
@@ -72,9 +131,17 @@ function validateInputFields() {
 
 const FORM = document.getElementById("pet-form");
 FORM.addEventListener("submit", e => {
-  if (!validateInputFields()) {
+  const validationStatus = validateInputFields();
+  if (!validationStatus.isValid) {
     // prevent the submission event if the input wasn't valid
     e.preventDefault();
     console.log("Invalid input field detected.");
+
+    console.log(composeErrorMessage(validationStatus.errorTypes))
+
+    displayErrors(validationStatus.fieldNames);
   }
+
+  // remove the error class from everything that has been since validated
+  cleanErrorClasses(validationStatus.fieldNames);
 });

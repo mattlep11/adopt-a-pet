@@ -136,3 +136,8 @@ legend.question-header ~ * {
 #form-controls input:active {
   filter: hue-rotate(-15deg);
 }
+
+.error-detected legend,
+.error-detected .question-header {
+  color: rgb(150, 24, 24);
+}
