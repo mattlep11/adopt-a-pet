@@ -78,11 +78,11 @@
   <main id="content-wrapper">
     <img id="giveaway-img" src="../assets/adoption_undraw.svg" alt="A man standing next to a poster of a cat.">
     <h2>Looking to put up your pet for adoption? Fill out the form below.</h2>
-    <form action="#" method="post">
+    <form id="pet-form" action="#" method="#">
       <fieldset class="no-border">
         <legend class="question-header">What type of animal?</legend>
         <label for="cat">
-          Cat <input required type="radio" name="animal-type" value="cat" id="cat">
+          Cat <input type="radio" name="animal-type" value="cat" id="cat">
         </label>
         <label for="dog">
           Dog <input type="radio" name="animal-type" value="dog" id="dog">
@@ -129,13 +129,13 @@
         </label>
         <label for="not-found">
           Not listed
-          <input type="checkbox" name="breed" value="not-found" id="not-found">
+          <input type="checkbox" name="breed" value="not-found" id="not-found" class="none-chosen">
         </label>
       </fieldset>
       <hr>
       <label for="age-selector" class="question-header">
         Their age:
-        <select required name="age" id="age-selector">
+        <select name="age" id="age-selector">
           <option value="">Select an age range</option>
           <option value="<1">1 or younger</option>
           <option value="2-4">2 - 4</option>
@@ -147,7 +147,7 @@
       <fieldset class="no-border">
         <legend class="question-header">Their gender:</legend>
         <label for="male">
-          Male <input required type="radio" name="gender" value="male" id="male">
+          Male <input type="radio" name="gender" value="male" id="male">
         </label>
         <label for="female">
           Female <input type="radio" name="gender" value="female" id="female">
@@ -158,15 +158,19 @@
         <legend class="question-header">Does your animal behave well with...</legend>
         <label for="dogs">
           Other Dogs
-          <input type="checkbox" name="gets-along-width" value="dogs" id="dogs">
+          <input type="checkbox" name="gets-along-with" value="dogs" id="dogs">
         </label>
         <label for="cats">
           Other Cats
-          <input type="checkbox" name="gets-along-width" value="cats" id="cats">
+          <input type="checkbox" name="gets-along-with" value="cats" id="cats">
         </label>
         <label for="kids">
           Children
-          <input type="checkbox" name="gets-along-width" value="kids" id="kids">
+          <input type="checkbox" name="gets-along-with" value="kids" id="kids">
+        </label>
+        <label for="none">
+          None / Don't Know
+          <input type="checkbox" name="gets-along-with" id="none" value="none" class="none-chosen">
         </label>
       </fieldset>
       <hr>
@@ -204,5 +208,6 @@
   </footer>
   <script src="https://kit.fontawesome.com/201eef246c.js" crossorigin="anonymous"></script>
   <script async src="/scripts/datetime.js"></script>
+  <script defer src="/scripts/input-validation.js"></script>
 </body>
 </html> 
