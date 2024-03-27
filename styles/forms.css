@@ -109,14 +109,16 @@ br {
   margin-bottom: 0.5rem;
 }
 #age .question-header,
-#pet-name .question-header {
+#pet-name .question-header,
+#photo .question-header {
   justify-content: left;
   gap: 1rem;
 }
 label.question-header select {
   margin-left: 1rem;
 }
-select {
+select,
+input[type="file"] {
   font-family: inherit;
 }
 legend.question-header ~ * {
@@ -180,7 +182,8 @@ legend.question-header ~ * {
   pointer-events: none;
 }
 #age .error-tooltip,
-#pet-name .error-tooltip {
+#pet-name .error-tooltip,
+#photo .error-tooltip {
   margin-left: auto;
 }
 .error-tooltip::before {

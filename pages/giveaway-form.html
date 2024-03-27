@@ -78,7 +78,7 @@
   <main id="content-wrapper">
     <img id="giveaway-img" src="../assets/adoption_undraw.svg" alt="A man standing next to a poster of a cat.">
     <h2>Looking to put up your pet for adoption? Fill out the form below.</h2>
-    <form id="pet-form" action="#" method="#">
+    <form id="pet-form" action="#" method="get" enctype="multipart/form-data">
       <fieldset id="animal-type" class="guideline">
         <legend class="question-header">What type of animal?
           <span class="error-tooltip">Select one</span>
@@ -92,11 +92,18 @@
       </fieldset>
       <hr>
       <fieldset id="pet-name"> 
-        <label for="pet-name" class="question-header">
+        <label for="p-names" class="question-header">
           Your pet's name:
-          <input type="text" name="pet-name" id="pet-name">
+          <input type="text" name="pet-name" id="p-names">
           <span class="error-tooltip">Enter your pet's name</span>
         </label>
+      </fieldset>
+      <hr>
+      <fieldset id="photo" class="guideline">
+        <legend class="question-header">A photo of your pet:
+          <span class="error-tooltip">Submit an image</span>
+        </legend>
+        <input type="file" name="photo" accept="image/*" id="pet-pic">
       </fieldset>
       <hr>
       <fieldset id="breed" class="guideline">
@@ -156,8 +163,8 @@
             <option value="8+">8+</option>
           </select>
           <span class="error-tooltip">Make a selection</span>
-        </fieldset>
-      </div>
+        </label>
+      </fieldset>
       <hr>
       <fieldset id="gender" class="guideline">
         <legend class="question-header">Their gender:
@@ -211,9 +218,9 @@
       </fieldset>
       <br>
       <fieldset id="email">
-        <label for="email" class="question-header">
+        <label for="email-addr" class="question-header">
           Your email address:
-          <input type="email" name="email" id="email">
+          <input type="email" name="email" id="email-addr">
           <span class="error-tooltip">Enter a valid email address</span>
         </label>
       </fieldset>
@@ -221,10 +228,10 @@
       <div id="form-controls">
         <input type="submit" value="Submit Form">
         <input type="reset" value="Clear Form">
+        <p id="error-detected">
+          <i class="fa-solid fa-circle-exclamation"></i> Some input is invalid!
+        </p>
       </div>
-      <p id="error-detected">
-        <i class="fa-solid fa-circle-exclamation"></i> Some input is invalid!
-      </p>
     </form>
   </main>
   <footer>

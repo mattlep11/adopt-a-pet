@@ -5,6 +5,7 @@ const ERROR_TOOLTIPS = document.getElementsByClassName("error-tooltip");
 const INPUT_TYPES = {
   "animal-type": "radio",
   "pet-name": "text",
+  "photo": "file",
   "breed": "checkbox",
   "age": "select",
   "gender": "radio",
@@ -22,6 +23,11 @@ function atLeastOneClicked(elements) {
 // verifies that a string-valued element is not empty or default 
 function validateTextInput(element) {
   return Boolean(element.value);
+}
+
+function validatePhotoInput(element) {
+  console.log(element.files.length);
+  return element.files.length !== 0;
 }
 
 const EMAIL_REGEX = /^[\w\-.]+@([\w\-]+\.)+(\w{2,3})$/gm;
@@ -67,6 +73,9 @@ function validateInputFields() {
 
       else if (type === "email")
         fieldIsValid = elementsToValidate.every(el => validateEmail(el));
+
+      else if (type === "file")
+        fieldIsValid = elementsToValidate.every(el => validatePhotoInput(el));
 
     if (!fieldIsValid) {
       status.isValid = false;
