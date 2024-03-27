@@ -1,4 +1,5 @@
 const DISABLER_CHECKBOXES = document.getElementsByClassName("none-chosen");
+const ERROR_TOOLTIPS = document.getElementsByClassName("error-tooltip");
 
 // the different fields that must be validated and the corresponding input type
 const INPUT_TYPES = {
@@ -14,7 +15,7 @@ const INPUT_TYPES = {
 
 // verifies that at least one checkbox or radio button has been clicked
 function atLeastOneClicked(elements) {
-  return elements.some((e) => e.checked);
+  return elements.some(e => e.checked);
 }
 
 // verifies that a string-valued element is not empty or default 
@@ -56,24 +57,18 @@ function validateInputFields() {
     continue;
 
     let fieldIsValid;  // whether or not this field has valid input
-    let error;         // specifies error type if invalid
   
-      if (type === "radio" || type === "checkbox") {
+      if (type === "radio" || type === "checkbox")
         fieldIsValid = atLeastOneClicked(elementsToValidate);
-        error = "unchecked";
-      }
-      else if (type === "select" || type === "text") {
+
+      else if (type === "select" || type === "text")
         fieldIsValid = elementsToValidate.every(el => validateTextInput(el));
-        error = "unfilled";
-      }
-      else if (type === "email") {
+
+      else if (type === "email")
         fieldIsValid = elementsToValidate.every(el => validateEmail(el));
-        error = "invalid";
-      }
 
     if (!fieldIsValid) {
       status.isValid = false;
-      status.errorTypes.push(error);
       status.fieldNames.push(name);
     }
   }
@@ -103,30 +98,13 @@ function cleanErrorClasses(invalidFields) {
   }
 }
 
-// creates the error message to display to the user
-function composeErrorMessage(errors) {
-  const unchecked = "Please ensure all radios and checkboxes are checked.";
-  const unfilled = "Please ensure all textfields and dropdowns " 
-    + "are filled with accurate information";
-  const invalid = "Please ensure that your email follows the correct format";
-
-  let errorMsg = "Invalid input has been detected. See the following:";
-  if (errors.includes("unchecked"))
-    errorMsg += "<br>- " + unchecked;
-
-  if (errors.includes("unfilled"))
-    errorMsg += "<br>- " + unfilled;
-
-  if (errors.includes("invalid"))
-    errorMsg += "<br>- " + invalid
-
-  return errorMsg;
-}
-
-function displayErrorMessage(msg) {
-  let node = document.getElementById("error-msg");
-  node.style.display = "block";
-  node.innerHTML = msg;
+const INVALID_ANIMATION = "fade-out";
+function fadeErrorMessages(invalidFields) {
+  for (let idx in invalidFields) {
+    let parent = document.getElementById(invalidFields[idx]);
+    let node = parent.getElementsByClassName('error-tooltip')[0];
+    node.style.animation = INVALID_ANIMATION + " 13s ease-out 1";
+  }
 }
 
 // add a listener to disable all checkboxes if a no-preference option is used
@@ -136,17 +114,22 @@ function displayErrorMessage(msg) {
     toggleCheckboxes(node, [...document.getElementsByName(node.name)]);
 }));
 
+[...ERROR_TOOLTIPS].forEach(tooltip => 
+  tooltip.addEventListener("animationend", e => {
+    tooltip.style.animation = "none";
+  }));
+
 const FORM = document.getElementById("pet-form");
 FORM.addEventListener("submit", e => {
   const validationStatus = validateInputFields();
   if (!validationStatus.isValid) {
     // prevent the submission event if the input wasn't valid
     e.preventDefault();
-    let errorMsg = composeErrorMessage(validationStatus.errorTypes);
-    console.log("Invalid input field detected.\n" + errorMsg);
+    console.log("Invalid input field detected.");
 
     displayErrors(validationStatus.fieldNames);
-    displayErrorMessage(errorMsg);
+    fadeErrorMessages(validationStatus.fieldNames);
+    document.getElementById("error-detected").style.display = "block";
   }
 
   // remove the error class from everything that has been since validated
