@@ -108,7 +108,8 @@ br {
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
 }
-#age .question-header {
+#age .question-header,
+#pet-name .question-header {
   justify-content: left;
   gap: 1rem;
 }
@@ -178,7 +179,8 @@ legend.question-header ~ * {
   text-align: center;
   pointer-events: none;
 }
-#age .error-tooltip {
+#age .error-tooltip,
+#pet-name .error-tooltip {
   margin-left: auto;
 }
 .error-tooltip::before {

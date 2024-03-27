@@ -4,6 +4,7 @@ const ERROR_TOOLTIPS = document.getElementsByClassName("error-tooltip");
 // the different fields that must be validated and the corresponding input type
 const INPUT_TYPES = {
   "animal-type": "radio",
+  "pet-name": "text",
   "breed": "checkbox",
   "age": "select",
   "gender": "radio",
