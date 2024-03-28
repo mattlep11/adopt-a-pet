@@ -1,16 +1,114 @@
 #content-wrapper {
+  --profile-min-height: 50rem;
+  --profile-max-height: 77.5%;
+  --profile-min-width: 31rem;
+  --profile-max-width: 45%;
+  position: relative;
   display: grid;
-  place-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: space-between;
+  gap: 5%;
+  padding: 4.5rem 7.5rem 3rem 7.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--profile-min-width), 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(var(--profile-min-height), 1fr));
 }
 
-.construction-img {
+#grid-header {
   position: absolute;
-  height: 55vh;
-  opacity: 40%;
-  margin-bottom: 10vh;
-  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0.5rem;
 }
-.construction-text {
-  font-size: 24px;
-  text-shadow: 0 3px var(--background);
+
+.pet-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.4rem;
+  background: var(--primary);
+  color: var(--background);
+  border-radius: 2px 2px 5px 5px;
+  min-width: var(--profile-min-width);
+  min-height: var(--profile-min-height); 
+  max-height: var(--profile-max-height);
+}
+.pet-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.image-bounds {
+  border: 4px solid var(--accent);
+  box-shadow: 0 0 3px  var(--accent);
+  width: 80%;
+  height: 50%;
+  margin-bottom: 2%;
+  transition: height 200ms, width 200ms, margin-bottom 200ms;
+}
+.image-bounds img {
+  margin: 0 auto;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  transition: height 200ms, width 200ms;
+}
+.pet-profile:hover .image-bounds {
+  width: 82.5%;
+  height: 52.5%;
+  margin-bottom: 0;
+}
+.pet-stats {
+  max-width: 80%;
+  width: 100%;
+  font-style: italic;
+  text-align: center;
+}
+.pet-stats p:has(span) { 
+  display: flex;
+  justify-content: space-between; 
+}
+.bold {
+  font-weight: bold;
+}
+.pet-profile hr {
+  width: 80%;
+  border-radius: 50%;
+  border-color: var(--background-accent);
+}
+.description {
+  max-width: 85%;
+  text-align: center;
+  line-height: 1.7rem;
+  height: calc(2.2rem * 4);
+}
+.pet-profile button {
+  width: 85%;
+  height: 7.5%;
+  background: var(--secondary);
+  border: none;
+  color: var(--text);
+  font-family: inherit;
+  word-spacing: 5px;
+  transition: filter 150ms, border-radius 150ms;
+  cursor: pointer;
+}
+.pet-profile button i {
+  transition: color 200ms;
+}
+.pet-profile button:hover {
+  filter: hue-rotate(-45deg);
+  border-radius: 25px;
+}
+.pet-profile button:hover i {
+  color: rgb(243, 153, 198);
+}
+@media (prefers-color-scheme: light) {
+  .pet-profile {
+    color: var(--text);
+  }
+  .pet-profile button:hover {
+    filter: hue-rotate(55deg);
+  }
 }

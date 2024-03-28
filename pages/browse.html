@@ -76,11 +76,32 @@
     </ul>
   </nav>
   <main id="content-wrapper">
-    <div class="construction-text">
-      <h2>You're early!</h2>
-      <p>Sorry - this page isn't quite ready yet. Come back another time!</p>
-    </div>
-    <img class="construction-img" src="../assets/construction_undraw.svg" alt="Two construction workers bringing wood to the wooden frame of a house.">
+    <h1 id="grid-header">Available for Adoption</h1>
+    <template id="pet-template">
+      <div class="pet-profile">
+        <p class="pet-name"></p>
+        <div class="image-bounds">
+          <img src="#" alt="pet-profile-picture">
+        </div>
+        <div class="pet-stats">
+          <p>
+            GENDER &middot; AGE
+          </p>
+          <p>
+            <span class="bold">Gets Along With:</span>
+          </p>
+          <p>
+            <span class="bold">Breed:</span>
+          </p>
+        </div>
+        <hr>
+        <p class="description">
+        </p>
+        <button>Interested! 
+          <i class="fa-solid fa-heart-circle-check"></i>
+        </button>
+      </div>
+    </template>
   </main>
   <footer>
     <a href="./privacy.html">Privacy Statement</a>
@@ -92,6 +113,7 @@
 
   </footer>
   <script src="https://kit.fontawesome.com/201eef246c.js" crossorigin="anonymous"></script>
+  <script async src="/scripts/populate-browser.js"></script>
   <script async src="/scripts/datetime.js"></script>
 </body>
 </html> 
