@@ -26,7 +26,6 @@ function validateTextInput(element) {
 }
 
 function validatePhotoInput(element) {
-  console.log(element.files.length);
   return element.files.length !== 0;
 }
 
