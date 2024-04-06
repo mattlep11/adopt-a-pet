@@ -1,37 +1,39 @@
-{{#extend "main"}}
-{{#content "title"}}Adopt a Pet{{/content}}
-{{#content "extraStylesheet"}}/assets/styles/home.css{{/content}}
-{{#content "body"}}
-  <main id="content-wrapper">
+{{!< main}} 
+<main id="content-wrapper">
+  <div>
     <div>
-      <div>
-        <h2 id="hero-banner">Ready to find your new best friend?</h2>
-        <h3 id="hero-subtext">Welcome to dogs and cats. The best adoption centre to find local rescues.</h3>
-      </div>
-      <div id="mission-statement">
-        Our mission is to ensure that all strays and rescues find a loving and deserving home. We offer services both to connect animals with new families as well as rehoming those whose families no longer want them. We do this by connecting those looking to adopt to those looking to rehome and by taking in strays and rescues to our local facilities. Use the sidebar to take full advantage of our plethora of services. 
-      </div>
-      <div>
-        <h2>
-          <i class="fa-solid fa-arrow-right"></i>
-          Check out our pet finder to get matched up to a perfect pet!
-        </h2>
-        <a class="redirect" href="./pet-finder.html">Find a Pet</a>
-      </div>
-      <div>
-        <h2>
-          <i class="fa-solid fa-arrow-right"></i>
-          Looking to put up a pet for adoption? Fill out our form below.
-        </h2>
-        <a class="redirect" href="./giveaway-form.html">Adoption Form</a>
-      </div>
+      <h2 id="hero-banner">Ready to find your new best friend?</h2>
+      <h3 id="hero-subtext">Welcome to dogs and cats. The best adoption centre
+        to find local rescues.</h3>
     </div>
-    <div class="decor primary"></div>
-    <div class="decor primary"></div>
-    <div class="decor secondary"></div>
-    <div class="decor secondary"></div>
-    <div class="decor accent"></div>
-    <img id="welcome-img" src="/assets/welcome_undraw.svg" alt="A man waving beneath a tree blowing in the wind">
-  </main>
-{{/content}}
-{{/extend}}
+    <div id="mission-statement">
+      Our mission is to ensure that all strays and rescues find a loving and
+      deserving home. We offer services both to connect animals with new
+      families as well as rehoming those whose families no longer want them. We
+      do this by connecting those looking to adopt to those looking to rehome
+      and by taking in strays and rescues to our local facilities. Use the
+      sidebar to take full advantage of our plethora of services.
+    </div>
+    <div>
+      <h2>
+        <i class="fa-solid fa-arrow-right"></i>
+        Check out our pet finder to get matched up to a perfect pet!
+      </h2>
+      <a class="redirect" href="./pet-finder.html">Find a Pet</a>
+    </div>
+    <div>
+      <h2>
+        <i class="fa-solid fa-arrow-right"></i>
+        Looking to put up a pet for adoption? Fill out our form below.
+      </h2>
+      <a class="redirect" href="./giveaway-form.html">Adoption Form</a>
+    </div>
+  </div>
+  <div class="decor primary"></div>
+  <div class="decor primary"></div>
+  <div class="decor secondary"></div>
+  <div class="decor secondary"></div>
+  <div class="decor accent"></div>
+  <img id="welcome-img" src="/assets/welcome_undraw.svg"
+    alt="A man waving beneath a tree blowing in the wind">
+</main>

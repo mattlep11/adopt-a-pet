@@ -1,172 +1,168 @@
-{{#extend "main"}}
-{{#content "title"}}Adoption Form{{/content}}
-{{#content "extraStylesheet"}}/assets/styles/forms.css{{/content}}
-{{#content "body"}}
-  <main id="content-wrapper">
-    <img id="giveaway-img" src="../assets/adoption_undraw.svg" alt="A man standing next to a poster of a cat.">
-    <h2>Looking to put up your pet for adoption? Fill out the form below.</h2>
-    <form id="pet-form" action="#" method="get" enctype="multipart/form-data">
-      <fieldset id="animal-type" class="guideline">
-        <legend class="question-header">What type of animal?
-          <span class="error-tooltip">Select one</span>
-        </legend>
-        <label for="cat">
-          Cat <input type="radio" name="animal-type" value="cat" id="cat">
+{{!< main}} 
+<main id="content-wrapper">
+  <img id="giveaway-img" src="../assets/adoption_undraw.svg"
+    alt="A man standing next to a poster of a cat.">
+  <h2>Looking to put up your pet for adoption? Fill out the form below.</h2>
+  <form id="pet-form" action="#" method="get" enctype="multipart/form-data">
+    <fieldset id="animal-type" class="guideline">
+      <legend class="question-header">What type of animal?
+        <span class="error-tooltip">Select one</span>
+      </legend>
+      <label for="cat">
+        Cat <input type="radio" name="animal-type" value="cat" id="cat">
+      </label>
+      <label for="dog">
+        Dog <input type="radio" name="animal-type" value="dog" id="dog">
+      </label>
+    </fieldset>
+    <hr>
+    <fieldset id="pet-name">
+      <label for="p-names" class="question-header">
+        Your pet's name:
+        <input type="text" name="pet-name" id="p-names">
+        <span class="error-tooltip">Enter your pet's name</span>
+      </label>
+    </fieldset>
+    <hr>
+    <fieldset id="photo" class="guideline">
+      <legend class="question-header">A photo of your pet:
+        <span class="error-tooltip">Submit an image</span>
+      </legend>
+      <input type="file" name="photo" accept="image/*" id="pet-pic">
+    </fieldset>
+    <hr>
+    <fieldset id="breed" class="guideline">
+      <legend class="question-header">Their breed:
+        <span class="error-tooltip">Select at least one</span>
+      </legend>
+      <p class="inline-desc">Cats:</p>
+      <div class="breed-list">
+        <label for="tabby">
+          Tabby Cat
+          <input type="checkbox" name="breed" value="tabby" id="tabby">
         </label>
-        <label for="dog">
-          Dog <input type="radio" name="animal-type" value="dog" id="dog">
+        <label for="shorthair">
+          Shorthair Cat
+          <input type="checkbox" name="breed" value="shorthair" id="shorthair">
         </label>
-      </fieldset>
-      <hr>
-      <fieldset id="pet-name"> 
-        <label for="p-names" class="question-header">
-          Your pet's name:
-          <input type="text" name="pet-name" id="p-names">
-          <span class="error-tooltip">Enter your pet's name</span>
+        <label for="longhair">
+          Longhair Cat
+          <input type="checkbox" name="breed" value="longhair" id="longhair">
         </label>
-      </fieldset>
-      <hr>
-      <fieldset id="photo" class="guideline">
-        <legend class="question-header">A photo of your pet:
-          <span class="error-tooltip">Submit an image</span>
-        </legend>
-        <input type="file" name="photo" accept="image/*" id="pet-pic">
-      </fieldset>
-      <hr>
-      <fieldset id="breed" class="guideline">
-        <legend class="question-header">Their breed:
-          <span class="error-tooltip">Select at least one</span>
-        </legend>
-        <p class="inline-desc">Cats:</p>
-        <div class="breed-list">
-          <label for="tabby">
-            Tabby Cat
-            <input type="checkbox" name="breed" value="tabby" id="tabby">
-          </label>
-          <label for="shorthair">
-            Shorthair Cat
-            <input type="checkbox" name="breed" value="shorthair" id="shorthair">
-          </label>
-          <label for="longhair">
-            Longhair Cat
-            <input type="checkbox" name="breed" value="longhair" id="longhair">
-          </label>
-        </div>
-        <br>
-        <p class="inline-desc">Dogs:</p>
-        <div class="breed-list">
-          <label for="german">
-            German Shepherd
-            <input type="checkbox" name="breed" value="german" id="german">
-          </label>
-          <label for="pug">
-            Pug
-            <input type="checkbox" name="breed" value="pug" id="pug">
-          </label>
-          <label for="poodle">
-            Poodle
-            <input type="checkbox" name="breed" value="poodle" id="poodle">
-          </label>
-        </div>
-        <br>
-        <label for="mixed">
-          Mixed
-          <input type="checkbox" name="breed" value="mixed" id="mixed">
-        </label>
-        <label for="not-found">
-          Not listed
-          <input type="checkbox" name="breed" value="not-found" id="not-found" class="none-chosen">
-        </label>
-      </fieldset>
-      <hr>
-      <fieldset id="age">
-        <label for="age-selector" class="question-header">
-          Their age:
-          <select name="age" id="age-selector">
-            <option value="">Select an age</option>
-            <option value="<=1">1 or younger</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8+">8+</option>
-          </select>
-          <span class="error-tooltip">Make a selection</span>
-        </label>
-      </fieldset>
-      <hr>
-      <fieldset id="gender" class="guideline">
-        <legend class="question-header">Their gender:
-          <span class="error-tooltip">Select one.</span>
-        </legend>
-        <label for="male">
-          Male <input type="radio" name="gender" value="male" id="male">
-        </label>
-        <label for="female">
-          Female <input type="radio" name="gender" value="female" id="female">
-        </label>
-      </fieldset>
-      <hr>
-      <fieldset id="gets-along-with" class="guideline">
-        <legend class="question-header">Does your animal behave well with...
-          <span class="error-tooltip">Select at least one</span>
-        </legend>
-        <label for="dogs">
-          Other Dogs
-          <input type="checkbox" name="gets-along-with" value="dogs" id="dogs">
-        </label>
-        <label for="cats">
-          Other Cats
-          <input type="checkbox" name="gets-along-with" value="cats" id="cats">
-        </label>
-        <label for="kids">
-          Children
-          <input type="checkbox" name="gets-along-with" value="kids" id="kids">
-        </label>
-        <label for="none">
-          None / Don't Know
-          <input type="checkbox" name="gets-along-with" id="none" value="none" class="none-chosen">
-        </label>
-      </fieldset>
-      <hr>
-      <fieldset id="desc" class="guideline">
-        <legend class="question-header">Tell us a little bit about your pet!
-          <span class="error-tooltip">Enter a description</span>
-        </legend>
-        <textarea name="desc" id="animal-desc" maxlength="172" cols="40" rows="3" placeholder="Try to keep it brief so your description can fit on the listing."></textarea>
-      </fieldset>
-      <hr class="long">
-      <h3>To finish off, we need some of your personal information:</h3>
-      <h4>This is simply to help us connect you with interested adoptees!</h4>
-      <fieldset id="owner-name">
-        <label for="names" class="question-header">
-          Your first and last name:
-          <input type="text" name="owner-name" id="names">
-          <span class="error-tooltip">Enter your name</span>
-        </label>
-      </fieldset>
-      <br>
-      <fieldset id="email">
-        <label for="email-addr" class="question-header">
-          Your email address:
-          <input type="email" name="email" id="email-addr">
-          <span class="error-tooltip">Enter a valid email address</span>
-        </label>
-      </fieldset>
-      <hr>
-      <div id="form-controls">
-        <input type="submit" value="Submit Form">
-        <input type="reset" value="Clear Form">
-        <p id="error-detected">
-          <i class="fa-solid fa-circle-exclamation"></i> Some input is invalid!
-        </p>
       </div>
-    </form>
+      <br>
+      <p class="inline-desc">Dogs:</p>
+      <div class="breed-list">
+        <label for="german">
+          German Shepherd
+          <input type="checkbox" name="breed" value="german" id="german">
+        </label>
+        <label for="pug">
+          Pug
+          <input type="checkbox" name="breed" value="pug" id="pug">
+        </label>
+        <label for="poodle">
+          Poodle
+          <input type="checkbox" name="breed" value="poodle" id="poodle">
+        </label>
+      </div>
+      <br>
+      <label for="mixed">
+        Mixed
+        <input type="checkbox" name="breed" value="mixed" id="mixed">
+      </label>
+      <label for="not-found">
+        Not listed
+        <input type="checkbox" name="breed" value="not-found" id="not-found"
+          class="none-chosen">
+      </label>
+    </fieldset>
+    <hr>
+    <fieldset id="age">
+      <label for="age-selector" class="question-header">
+        Their age:
+        <select name="age" id="age-selector">
+          <option value="">Select an age</option>
+          <option value="<=1">1 or younger</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8+">8+</option>
+        </select>
+        <span class="error-tooltip">Make a selection</span>
+      </label>
+    </fieldset>
+    <hr>
+    <fieldset id="gender" class="guideline">
+      <legend class="question-header">Their gender:
+        <span class="error-tooltip">Select one.</span>
+      </legend>
+      <label for="male">
+        Male <input type="radio" name="gender" value="male" id="male">
+      </label>
+      <label for="female">
+        Female <input type="radio" name="gender" value="female" id="female">
+      </label>
+    </fieldset>
+    <hr>
+    <fieldset id="gets-along-with" class="guideline">
+      <legend class="question-header">Does your animal behave well with...
+        <span class="error-tooltip">Select at least one</span>
+      </legend>
+      <label for="dogs">
+        Other Dogs
+        <input type="checkbox" name="gets-along-with" value="dogs" id="dogs">
+      </label>
+      <label for="cats">
+        Other Cats
+        <input type="checkbox" name="gets-along-with" value="cats" id="cats">
+      </label>
+      <label for="kids">
+        Children
+        <input type="checkbox" name="gets-along-with" value="kids" id="kids">
+      </label>
+      <label for="none">
+        None / Don't Know
+        <input type="checkbox" name="gets-along-with" id="none" value="none"
+          class="none-chosen">
+      </label>
+    </fieldset>
+    <hr>
+    <fieldset id="desc" class="guideline">
+      <legend class="question-header">Tell us a little bit about your pet!
+        <span class="error-tooltip">Enter a description</span>
+      </legend>
+      <textarea name="desc" id="animal-desc" maxlength="172" cols="40" rows="3"
+        placeholder="Try to keep it brief so your description can fit on the listing."></textarea>
+    </fieldset>
+    <hr class="long">
+    <h3>To finish off, we need some of your personal information:</h3>
+    <h4>This is simply to help us connect you with interested adoptees!</h4>
+    <fieldset id="owner-name">
+      <label for="names" class="question-header">
+        Your first and last name:
+        <input type="text" name="owner-name" id="names">
+        <span class="error-tooltip">Enter your name</span>
+      </label>
+    </fieldset>
+    <br>
+    <fieldset id="email">
+      <label for="email-addr" class="question-header">
+        Your email address:
+        <input type="email" name="email" id="email-addr">
+        <span class="error-tooltip">Enter a valid email address</span>
+      </label>
+    </fieldset>
+    <hr>
+    <div id="form-controls">
+      <input type="submit" value="Submit Form">
+      <input type="reset" value="Clear Form">
+      <p id="error-detected">
+        <i class="fa-solid fa-circle-exclamation"></i> Some input is invalid!
+      </p>
+    </div>
+  </form>
   </main>
-{{/content}}
-{{#content "extraScript"}}
-  <script defer src="/scripts/input-validation.js"></script>
-{{/content}}
-{{/extend}}

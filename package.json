@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Cumulative Final Project for SOEN287 ConU.",
-  "main": "index.js",
+  "main": "app/server.js",
   "scripts": {
     "start": "node app/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,38 +1,30 @@
-{{#extend "main"}}
-{{#content "title"}}Pet Browser{{/content}}
-{{#content "extraStylesheet"}}/assets/styles/browse.css{{/content}}
-{{#content "body"}}
-  <main id="content-wrapper">
-    <h1 id="grid-header">Available for Adoption</h1>
-    {{#each pets}}
-      <div class="pet-profile">
-        <p class="pet-name">{{this.name}}</p>
-        <div class="image-bounds">
-          <img src={{this.picture}} alt="pet-profile-picture">
-        </div>
-        <div class="pet-stats">
-          <p>
-            {{this.gender}} &middot; {{this.age}}
-          </p>
-          <p>
-            <span class="bold">Gets Along With:</span>{{this.behaviour}}
-          </p>
-          <p>
-            <span class="bold">Breed:</span>{{this.breed}}
-          </p>
-        </div>
-        <hr>
-        <p class="description">
-          {{this.desc}}
-        </p>
-        <button>Interested! 
-          <i class="fa-solid fa-heart-circle-check"></i>
-        </button>
-      </div>
-    {{/each}}
-  </main>
-{{/content}}
-{{#content "extraScript"}}
-  <script async src="/scripts/populate-browser.js"></script>
-{{/content}}
-{{/extend}}
+{{!< main}} 
+<main id="content-wrapper">
+  <h1 id="grid-header">Available for Adoption</h1>
+  {{#each pets}}
+  <div class="pet-profile">
+    <p class="pet-name">{{this.name}}</p>
+    <div class="image-bounds">
+      <img src={{this.picture}} alt="pet-profile-picture">
+    </div>
+    <div class="pet-stats">
+      <p>
+        {{this.gender}} &middot; {{this.age}}
+      </p>
+      <p>
+        <span class="bold">Gets Along With:</span>{{this.behaviour}}
+      </p>
+      <p>
+        <span class="bold">Breed:</span>{{this.breed}}
+      </p>
+    </div>
+    <hr>
+    <p class="description">
+      {{this.desc}}
+    </p>
+    <button>Interested!
+      <i class="fa-solid fa-heart-circle-check"></i>
+    </button>
+  </div>
+  {{/each}}
+</main>
