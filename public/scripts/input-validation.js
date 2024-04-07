@@ -1,18 +1,18 @@
-const DISABLER_CHECKBOXES = document.getElementsByClassName("none-chosen");
-const ERROR_TOOLTIPS = document.getElementsByClassName("error-tooltip");
+const DISABLER_CHECKBOXES = document.getElementsByClassName('none-chosen');
+const ERROR_TOOLTIPS = document.getElementsByClassName('error-tooltip');
 
 // the different fields that must be validated and the corresponding input type
 const INPUT_TYPES = {
-  "animal-type": "radio",
-  "pet-name": "text",
-  "photo": "file",
-  "breed": "checkbox",
-  "age": "select",
-  "gender": "radio",
-  "gets-along-with": "checkbox",
-  "desc": "text",
-  "owner-name": "text",
-  "email": "email"
+  'animal-type': 'radio',
+  'pet-name': 'text',
+  'photo': 'file',
+  'breed': 'checkbox',
+  'age': 'select',
+  'gender': 'radio',
+  'gets-along-with': 'checkbox',
+  'desc': 'text',
+  'owner-name': 'text',
+  'email': 'email'
 };
 
 // verifies that at least one checkbox or radio button has been clicked
@@ -64,16 +64,16 @@ function validateInputFields() {
 
     let fieldIsValid;  // whether or not this field has valid input
   
-      if (type === "radio" || type === "checkbox")
+      if (type === 'radio' || type === 'checkbox')
         fieldIsValid = atLeastOneClicked(elementsToValidate);
 
-      else if (type === "select" || type === "text")
+      else if (type === 'select' || type === 'text')
         fieldIsValid = elementsToValidate.every(el => validateTextInput(el));
 
-      else if (type === "email")
+      else if (type === 'email')
         fieldIsValid = elementsToValidate.every(el => validateEmail(el));
 
-      else if (type === "file")
+      else if (type === 'file')
         fieldIsValid = elementsToValidate.every(el => validatePhotoInput(el));
 
     if (!fieldIsValid) {
@@ -85,7 +85,7 @@ function validateInputFields() {
   return status;
 }
 
-const INVALID_INPUT_CLASS = "error-detected";
+const INVALID_INPUT_CLASS = 'error-detected';
 // each field is nested in a div with an ID equal to the form name
 // display a red error border around invalid fields 
 function displayErrors(invalidFields) {
@@ -107,38 +107,38 @@ function cleanErrorClasses(invalidFields) {
   }
 }
 
-const INVALID_ANIMATION = "fade-out";
+const INVALID_ANIMATION = 'fade-out';
 function fadeErrorMessages(invalidFields) {
   for (let idx in invalidFields) {
     let parent = document.getElementById(invalidFields[idx]);
     let node = parent.getElementsByClassName('error-tooltip')[0];
-    node.style.animation = INVALID_ANIMATION + " 13s ease-out 1";
+    node.style.animation = INVALID_ANIMATION + ' 13s ease-out 1';
   }
 }
 
 // add a listener to disable all checkboxes if a no-preference option is used
-[...DISABLER_CHECKBOXES].forEach(cbox => cbox.addEventListener("change", e => {
+[...DISABLER_CHECKBOXES].forEach(cbox => cbox.addEventListener('change', e => {
   let node = e.target;
   if (node.checked || !node.checked)
     toggleCheckboxes(node, [...document.getElementsByName(node.name)]);
 }));
 
 [...ERROR_TOOLTIPS].forEach(tooltip => 
-  tooltip.addEventListener("animationend", e => {
-    tooltip.style.animation = "none";
+  tooltip.addEventListener('animationend', e => {
+    tooltip.style.animation = 'none';
   }));
 
-const FORM = document.getElementById("pet-form");
-FORM.addEventListener("submit", e => {
+const FORM = document.getElementById('pet-form');
+FORM.addEventListener('submit', e => {
   const validationStatus = validateInputFields();
   if (!validationStatus.isValid) {
     // prevent the submission event if the input wasn't valid
     e.preventDefault();
-    console.log("Invalid input field detected.");
+    console.log('Invalid input field detected.');
 
     displayErrors(validationStatus.fieldNames);
     fadeErrorMessages(validationStatus.fieldNames);
-    document.getElementById("error-detected").style.display = "block";
+    document.getElementById('error-detected').style.display = 'block';
   }
 
   // remove the error class from everything that has been since validated
