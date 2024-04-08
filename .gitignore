@@ -1,8 +1,9 @@
-# .gitignore
+# .gitignoregit=
 node_modules/
 
+# user info
+data/*
+
 # photos uploaded by users
-**/uploads/*.png
-**/uploads/*.jpg
-**/uploads/*.jpeg
-**/uploads/*.gif
+uploads/*
+!uploads/.gitkeep
