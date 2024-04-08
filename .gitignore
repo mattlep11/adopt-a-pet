@@ -1,2 +1,8 @@
 # .gitignore
 node_modules/
+
+# photos uploaded by users
+**/uploads/*.png
+**/uploads/*.jpg
+**/uploads/*.jpeg
+**/uploads/*.gif

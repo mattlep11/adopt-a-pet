@@ -112,3 +112,17 @@
     filter: hue-rotate(55deg);
   }
 }
+
+.greyscale {
+  filter: grayscale(0.9);
+}
+.greyscale .pet-name {
+  text-decoration: underline;
+}
+.greyscale .image-bounds {
+  border: none;
+}
+.greyscale img {
+  object-fit: contain;
+  border: none;
+}

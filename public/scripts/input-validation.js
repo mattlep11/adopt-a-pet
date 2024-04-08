@@ -4,12 +4,12 @@ const ERROR_TOOLTIPS = document.getElementsByClassName('error-tooltip');
 // the different fields that must be validated and the corresponding input type
 const INPUT_TYPES = {
   'animal-type': 'radio',
-  'pet-name': 'text',
+  'name': 'text',
   'photo': 'file',
   'breed': 'checkbox',
   'age': 'select',
   'gender': 'radio',
-  'gets-along-with': 'checkbox',
+  'behaviour': 'checkbox',
   'desc': 'text',
   'owner-name': 'text',
   'email': 'email'
@@ -29,7 +29,7 @@ function validatePhotoInput(element) {
   return element.files.length !== 0;
 }
 
-const EMAIL_REGEX = /^[\w\-.]+@([\w\-]+\.)+(\w{2,3})$/gm;
+const EMAIL_REGEX = /^[\w\-.]+@([\w\-]+\.)+(\w{2,3})$/m;
 // verifies that the given email matches the default accepted standard
 function validateEmail(email) {
   return EMAIL_REGEX.test(email.value);
@@ -96,6 +96,9 @@ function displayErrors(invalidFields) {
 }
 
 function cleanErrorClasses(invalidFields) {
+  if (invalidFields.length === 0)
+    document.getElementById('error-detected').style.display = 'none';
+
   for (let name in INPUT_TYPES) {
     if (!invalidFields.includes(name)) {
       let field = document.getElementById(name);
@@ -107,12 +110,11 @@ function cleanErrorClasses(invalidFields) {
   }
 }
 
-const INVALID_ANIMATION = 'fade-out';
 function fadeErrorMessages(invalidFields) {
   for (let idx in invalidFields) {
     let parent = document.getElementById(invalidFields[idx]);
     let node = parent.getElementsByClassName('error-tooltip')[0];
-    node.style.animation = INVALID_ANIMATION + ' 13s ease-out 1';
+    node.style.animation = 'fade-out 13s ease-out 1';
   }
 }
 
@@ -129,18 +131,80 @@ function fadeErrorMessages(invalidFields) {
   }));
 
 const FORM = document.getElementById('pet-form');
+const POST_DEST = FORM.action.match(/\/([^\/])+$/)[0];
 FORM.addEventListener('submit', e => {
+  e.preventDefault();
   const validationStatus = validateInputFields();
+  
   if (!validationStatus.isValid) {
-    // prevent the submission event if the input wasn't valid
-    e.preventDefault();
-    console.log('Invalid input field detected.');
-
+    console.error('Invalid input field detected.');
     displayErrors(validationStatus.fieldNames);
     fadeErrorMessages(validationStatus.fieldNames);
     document.getElementById('error-detected').style.display = 'block';
+  }
+  else {
+    const formData = new FormData(FORM);
+    if (POST_DEST === "/giveaway-form")
+      postToGiveaway(formData);
+    else if (POST_DEST === "/pet-finder")
+      postToFinder(formData);
+    else
+      console.error("Invalid post destination. Something went wrong.");
   }
 
   // remove the error class from everything that has been since validated
   cleanErrorClasses(validationStatus.fieldNames);
 });
+
+function postToGiveaway(formData) {
+  fetch("/giveaway-form", {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.ok)
+      FORM.reset();
+
+    displayResultNotif(data.ok, data.errors);
+  })
+  .catch(err => console.error(`Failed to post: ${err}`));
+}
+
+function postToFinder(formData) {
+  const dataParams = new URLSearchParams(formData);
+}
+
+function displayResultNotif(success, errors) {
+  let notif;
+  if (success)
+    notif = document.getElementById("notif-valid");
+  else {
+    notif = document.getElementById("notif-invalid");
+    const errorSpan = document.getElementById("notif-errors");
+
+    errorSpan.innerText = ''; // clear old errors if used
+    console.log(errors);
+    errorSpan.innerText = errors.map((error, idx) => (idx === 0 ? ` - ${error}` : `\n - ${error}`)).join('');
+  }
+  
+  notif.style.display = 'block';
+  notif.style.animation = 'slide-up 400ms ease-out forwards, fade-out 13s ease-out 400ms forwards';
+
+  function onAnimationEnd() {
+    let animationCount = 0;
+    // remove the event listener after the two fire so they can be reused
+    function removeListener() {
+      if (animationCount == 1)  {
+        notif.style.display = 'none';
+        notif.style.animation = 'none';
+        notif.removeEventListener('animationend', onAnimationEnd);
+      }
+      animationCount++;
+    }
+
+    return removeListener;
+  }
+
+  notif.addEventListener('animationend', onAnimationEnd());
+}

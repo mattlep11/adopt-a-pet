@@ -1,30 +1,61 @@
 {{!< main}} 
 <main id="content-wrapper">
   <h1 id="grid-header">Available for Adoption</h1>
-  {{#each pets}}
-  <div class="pet-profile">
-    <p class="pet-name">{{this.name}}</p>
-    <div class="image-bounds">
-      <img src={{this.picture}} alt="pet-profile-picture">
+  {{#if pets}}
+    {{#each pets}}
+    <div class="pet-profile">
+      <p class="pet-name">{{this.name}}</p>
+      <div class="image-bounds">
+        {{#if photo}}
+          <img src="{{this.photo}}" alt="pet-profile-picture">
+        {{else}}
+          <img src="/assets/undraw_ufo.svg" alt="pet-profile-picture">
+        {{/if}}
+      </div>
+      <div class="pet-stats">
+        <p>
+          {{this.gender}} &middot; {{this.age}}
+        </p>
+        <p>
+          <span class="bold">Gets Along With:</span>{{this.behaviour}}
+        </p>
+        <p>
+          <span class="bold">Breed:</span>{{this.breed}}
+        </p>
+      </div>
+      <hr>
+      <p class="description">
+        {{this.desc}}
+      </p>
+      <button>Interested!
+        <i class="fa-solid fa-heart-circle-check"></i>
+      </button>
     </div>
-    <div class="pet-stats">
-      <p>
-        {{this.gender}} &middot; {{this.age}}
+    {{/each}}
+    {{else}}
+    <div class="greyscale pet-profile">
+      <p class="pet-name">No pets found</p>
+      <div class="image-bounds">
+        <img src="/assets/undraw_ufo.svg" alt="pet-profile-picture">
+      </div>
+      <div class="pet-stats">
+        <p>
+          We're cleared out!
+        </p>
+        <p>
+          <span class="bold"></span>
+        </p>
+        <p>
+          <span class="bold"></span>
+        </p>
+      </div>
+      <hr>
+      <p class="description">
+        Either we have no pets available or no pets have matched your filtered query. We thank you greatly for your support!
       </p>
-      <p>
-        <span class="bold">Gets Along With:</span>{{this.behaviour}}
-      </p>
-      <p>
-        <span class="bold">Breed:</span>{{this.breed}}
-      </p>
+      <button>See you soon!
+        <i class="fa-solid fa-face-laugh-wink"></i>
+      </button>
     </div>
-    <hr>
-    <p class="description">
-      {{this.desc}}
-    </p>
-    <button>Interested!
-      <i class="fa-solid fa-heart-circle-check"></i>
-    </button>
-  </div>
-  {{/each}}
+  {{/if}}
 </main>

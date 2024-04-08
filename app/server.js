@@ -2,9 +2,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
 import { engine } from 'express-handlebars';
+import bodyParser from 'body-parser';
 import { router } from './adoption-site/router.js'
 
-export const app = express();
+const app = express();
 const port = process.env.PORT || 3000;
 
 // redefine file and dirname for ESM module
@@ -12,6 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, '../public')));
+app.use('/uploads', express.static(path.join(__dirname, 'adoption-site', 'uploads')));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('handlebars', engine(
   { 
     defaultLayout: 'main',

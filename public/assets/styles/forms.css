@@ -211,6 +211,47 @@ legend.question-header ~ * {
   margin-right: 0.4rem;
 }
 
+#notif-valid,
+#notif-invalid {
+  display: none;
+  position: absolute;
+  bottom: calc(var(--footer-height) + 5%);
+  right: calc(var(--sidebar-shadow-width) + 5%);
+  padding: 1vw 1vh;
+  border-radius: 2px;
+  z-index: 99;
+  background: var(--secondary);
+}
+#notif-invalid {
+  background: rgb(199, 109, 109);
+}
+#notif-valid .subject-line,
+#notif-invalid .subject-line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+#notif-invalid  #notif-errors {
+  line-height: 0.6rem;
+  font-family: inherit;
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes fade-out {
   5% { opacity: 1; }
   80% { opacity: 1 }

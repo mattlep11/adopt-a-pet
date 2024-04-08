@@ -1,25 +1,38 @@
 {{!< main}} 
 <main id="content-wrapper">
+  <div id="notif-valid">
+    <div class="subject-line">
+      <i id="valid-i" class="fa-solid fa-thumbs-up"></i>
+      <p id="subject">Submission Successful!</p>
+    </div>
+  </div>
+  <div id="notif-invalid">
+    <div class="subject-line">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <p id="subject">Errors found...</p>
+    </div>
+    <pre id="notif-errors"></pre>
+  </div>
   <img id="giveaway-img" src="../assets/adoption_undraw.svg"
     alt="A man standing next to a poster of a cat.">
   <h2>Looking to put up your pet for adoption? Fill out the form below.</h2>
-  <form id="pet-form" action="#" method="get" enctype="multipart/form-data">
+  <form id="pet-form" action="/giveaway-form" method="post" enctype="multipart/form-data">
     <fieldset id="animal-type" class="guideline">
       <legend class="question-header">What type of animal?
         <span class="error-tooltip">Select one</span>
       </legend>
       <label for="cat">
-        Cat <input type="radio" name="animal-type" value="cat" id="cat">
+        Cat <input type="radio" name="animal-type" value="Cat" id="cat">
       </label>
       <label for="dog">
-        Dog <input type="radio" name="animal-type" value="dog" id="dog">
+        Dog <input type="radio" name="animal-type" value="Dog" id="dog">
       </label>
     </fieldset>
     <hr>
-    <fieldset id="pet-name">
+    <fieldset id="name">
       <label for="p-names" class="question-header">
         Your pet's name:
-        <input type="text" name="pet-name" id="p-names">
+        <input type="text" name="name" id="p-names">
         <span class="error-tooltip">Enter your pet's name</span>
       </label>
     </fieldset>
@@ -28,7 +41,7 @@
       <legend class="question-header">A photo of your pet:
         <span class="error-tooltip">Submit an image</span>
       </legend>
-      <input type="file" name="photo" accept="image/*" id="pet-pic">
+      <input type="file" name="photo" accept="image/png image/jpeg image/jpg image/gif" id="pet-pic">
     </fieldset>
     <hr>
     <fieldset id="breed" class="guideline">
@@ -39,15 +52,15 @@
       <div class="breed-list">
         <label for="tabby">
           Tabby Cat
-          <input type="checkbox" name="breed" value="tabby" id="tabby">
+          <input type="checkbox" name="breed" value="Tabby" id="tabby">
         </label>
         <label for="shorthair">
           Shorthair Cat
-          <input type="checkbox" name="breed" value="shorthair" id="shorthair">
+          <input type="checkbox" name="breed" value="Shorthair" id="shorthair">
         </label>
         <label for="longhair">
           Longhair Cat
-          <input type="checkbox" name="breed" value="longhair" id="longhair">
+          <input type="checkbox" name="breed" value="Longhair" id="longhair">
         </label>
       </div>
       <br>
@@ -55,25 +68,25 @@
       <div class="breed-list">
         <label for="german">
           German Shepherd
-          <input type="checkbox" name="breed" value="german" id="german">
+          <input type="checkbox" name="breed" value="German" id="german">
         </label>
         <label for="pug">
           Pug
-          <input type="checkbox" name="breed" value="pug" id="pug">
+          <input type="checkbox" name="breed" value="Pug" id="pug">
         </label>
         <label for="poodle">
           Poodle
-          <input type="checkbox" name="breed" value="poodle" id="poodle">
+          <input type="checkbox" name="breed" value="Poodle" id="poodle">
         </label>
       </div>
       <br>
       <label for="mixed">
         Mixed
-        <input type="checkbox" name="breed" value="mixed" id="mixed">
+        <input type="checkbox" name="breed" value="Mixed" id="mixed">
       </label>
       <label for="not-found">
         Not listed
-        <input type="checkbox" name="breed" value="not-found" id="not-found"
+        <input type="checkbox" name="breed" value="Unknown" id="not-found"
           class="none-chosen">
       </label>
     </fieldset>
@@ -101,32 +114,32 @@
         <span class="error-tooltip">Select one.</span>
       </legend>
       <label for="male">
-        Male <input type="radio" name="gender" value="male" id="male">
+        Male <input type="radio" name="gender" value="Male" id="male">
       </label>
       <label for="female">
-        Female <input type="radio" name="gender" value="female" id="female">
+        Female <input type="radio" name="gender" value="Female" id="female">
       </label>
     </fieldset>
     <hr>
-    <fieldset id="gets-along-with" class="guideline">
+    <fieldset id="behaviour" class="guideline">
       <legend class="question-header">Does your animal behave well with...
         <span class="error-tooltip">Select at least one</span>
       </legend>
       <label for="dogs">
         Other Dogs
-        <input type="checkbox" name="gets-along-with" value="dogs" id="dogs">
+        <input type="checkbox" name="behaviour" value="Dogs" id="dogs">
       </label>
       <label for="cats">
         Other Cats
-        <input type="checkbox" name="gets-along-with" value="cats" id="cats">
+        <input type="checkbox" name="behaviour" value="Cats" id="cats">
       </label>
       <label for="kids">
         Children
-        <input type="checkbox" name="gets-along-with" value="kids" id="kids">
+        <input type="checkbox" name="behaviour" value="Children" id="kids">
       </label>
       <label for="none">
         None / Don't Know
-        <input type="checkbox" name="gets-along-with" id="none" value="none"
+        <input type="checkbox" name="behaviour" id="none" value="None - Wild"
           class="none-chosen">
       </label>
     </fieldset>
