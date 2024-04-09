@@ -6,7 +6,7 @@ const INPUT_TYPES = {
   'animal': 'radio',
   'name': 'text',
   'photo': 'file',
-  'breed': 'checkbox',
+  'breed': 'select',
   'age': 'select',
   'gender': 'radio',
   'behaviour': 'checkbox',

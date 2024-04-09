@@ -16,46 +16,27 @@
       </label>
     </fieldset>
     <hr>
-    <fieldset id="breed" class="guideline">
-      <legend class="question-header">Preferred breed:
-        <span class="error-tooltip">Select at least one</span>
-      </legend>
-      <p class="inline-desc">Cats:</p>
-      <div class="breed-list">
-        <label for="tabby">
-          Tabby Cat
-          <input type="checkbox" name="breed" value="Tabby" id="tabby">
-        </label>
-        <label for="shorthair">
-          Shorthair Cat
-          <input type="checkbox" name="breed" value="Shorthair" id="shorthair">
-        </label>
-        <label for="longhair">
-          Longhair Cat
-          <input type="checkbox" name="breed" value="Longhair" id="longhair">
-        </label>
-      </div>
-      <br>
-      <p class="inline-desc">Dogs:</p>
-      <div class="breed-list">
-        <label for="german">
-          German Shepherd
-          <input type="checkbox" name="breed" value="German" id="german">
-        </label>
-        <label for="pug">
-          Pug
-          <input type="checkbox" name="breed" value="Pug" id="pug">
-        </label>
-        <label for="poodle">
-          Poodle
-          <input type="checkbox" name="breed" value="Poodle" id="poodle">
-        </label>
-      </div>
-      <br>
-      <label for="no-pref-breed">
-        No preference / Not listed
-        <input type="checkbox" name="breed" value="None" class="none-chosen"
-          id="no-pref-breed">
+    <fieldset id="breed">
+      <label for="breed-selector" class="question-header">
+        Their breed:
+        <select name="breed" id="breed-selector">
+          <option value="">Select a breed</option>
+          <optgroup label="Cats">
+            <option value="Tabby">Tabby</option>
+            <option value="Shorthair">Shorthair</option>
+            <option value="Longhair">Longhair</option>
+            <option value="Siamese">Siamese</option>
+          </optgroup>
+          <optgroup label="Dogs">
+            <option value="Retriever">Retriever</option>
+            <option value="Terrier">Terrier</option>
+            <option value="Spaniel">Spaniel</option>
+            <option value="Hound">Hound</option>
+          </optgroup>
+          <option value="Mixed">Mixed</option>
+          <option value="None">No Preference / Not Listed</option>
+        </select>
+        <span class="error-tooltip">Make a selection</span>
       </label>
     </fieldset>
     <hr>
