@@ -97,7 +97,7 @@ br {
   margin-bottom: 0.5rem;
 }
 #age .question-header,
-#pet-name .question-header,
+#name .question-header,
 #photo .question-header,
 #breed .question-header {
   justify-content: left;
@@ -171,8 +171,9 @@ legend.question-header ~ * {
   pointer-events: none;
 }
 #age .error-tooltip,
-#pet-name .error-tooltip,
-#photo .error-tooltip {
+#name .error-tooltip,
+#photo .error-tooltip,
+#breed .error-tooltip {
   margin-left: auto;
 }
 .error-tooltip::before {
