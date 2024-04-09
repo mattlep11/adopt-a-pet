@@ -46,6 +46,15 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/accounts', (req, res) => {
+  res.render('accounts', {
+    title: "Sign in",
+    extraStylesheet: '/assets/styles/accounts.css',
+    extraScript: '<script defer src="/scripts/accounts.js"></script>',
+    currentRoute: '/accounts'
+  })
+});
+
 router.get('/browse', async (req, res) => {
   const petListings = await data.getPetListing(petJSON);
 

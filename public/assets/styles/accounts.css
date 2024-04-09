@@ -1,0 +1,133 @@
+#content-wrapper {
+  position: relative;
+  --error-red: rgb(150, 24, 24); 
+  --max-fieldset-size: 57rem;
+  font-size: 1.5rem;
+  text-shadow: 0 1px 2px var(--background);
+  padding: 1rem 7.5rem 3rem 7.5rem;
+}
+
+#create-account,
+#sign-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  width: 100;
+}
+#create-account {
+  display: none;
+  opacity: 0;
+}
+@media (max-width: 1300px) {
+  #create-account,
+  #sign-in {
+    flex-direction: column;
+    justify-content: center;
+    gap: 5rem;
+  }
+}
+
+form {
+  --form-bg: #20220b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: var(--max-fieldset-size);
+  min-height: 45%;
+  padding: 1.75rem 2rem;
+  border-radius: 5px;
+  background: var(--form-bg);
+}
+#create-form {
+  position: relative;
+  min-height: 60%;
+}
+#create-form::after {
+  content: "Please do not use your real information for this demo. It will not be stored securely.";
+  position: absolute;
+  bottom: -2rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--error-red);
+  font-size: 0.9rem;
+
+}
+
+form h2 {
+  align-self: center;
+}
+
+input { font-family: inherit; }
+
+fieldset { border: none; }
+fieldset input {
+  margin-left: 1.25rem;
+}
+
+label { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pass-viewer {
+  color: var(--accent);
+  cursor: pointer;
+  margin-left: 1.25rem;
+}
+
+input[type='submit'] {
+  padding: 0.8rem 2.45rem;
+  background: var(--primary);
+  border: none;
+  border-radius: 3px;
+  font-family: inherit;
+  color: var(--background);
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 200ms;
+}
+input[type='submit']:hover {
+  filter: hue-rotate(5deg);
+}
+input[type='submit']:active {
+  filter: hue-rotate(-15deg);
+}
+
+#switch-to-create,
+#switch-to-sign {
+  color: rgba(140, 140, 140);
+  font-size: 1.1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+#content-wrapper img {
+  height: 40%;
+  opacity: 40%;
+  z-index: -1;
+}
+#content-wrapper #create-img {
+  height: 60%;
+}
+
+@media (prefers-color-scheme: light) {
+  form {
+    --form-bg: #c0c2b9;;
+  }
+  #switch-to-create,
+  #switch-to-sign {
+  color: rgba(30, 30, 30);
+  }
+}
+
+@keyframes fade-out {
+  from { opacity: 1 }
+  to { opacity: 0 }
+}
+
+@keyframes fade-in {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
