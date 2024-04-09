@@ -151,3 +151,11 @@ router.get('/privacy', (req, res) => {
     currentRoute: '/privacy'
   });
 });
+
+router.get('/*', (req, res) => {
+  res.render('err', {
+    title: 'Page Not Found',
+    extraStylesheet: '/assets/styles/404.css',
+    currentRoute: '/404'
+  });
+});
