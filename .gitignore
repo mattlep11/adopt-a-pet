@@ -5,5 +5,5 @@ node_modules/
 data/*
 
 # photos uploaded by users
-uploads/*
+**/uploads/
 !uploads/.gitkeep

@@ -1,6 +1,12 @@
 {{!< main}} 
 <main id="content-wrapper">
-  <h1 id="grid-header">Available for Adoption</h1>
+  <h1 id="grid-header">
+    {{#if tagline}}
+      {{tagline}}
+    {{else}}
+      Available for Adoption
+    {{/if}}
+  </h1>
   {{#if pets}}
     {{#each pets}}
     <div class="pet-profile">
@@ -14,7 +20,7 @@
       </div>
       <div class="pet-stats">
         <p>
-          {{this.gender}} &middot; {{this.age}}
+          {{this.gender}} {{this.animal}} &middot; {{this.age}}
         </p>
         <p>
           <span class="bold">Gets Along With:</span>{{this.behaviour}}

@@ -48,7 +48,7 @@ function validatePetListing(newPet) {
     status.errors.push('Invalid pet name entered.');
   }
   // pet type
-  if(!newPet['animal-type'] || !['Cat', 'Dog'].includes(newPet['animal-type'])) {
+  if(!newPet.animal || !['Cat', 'Dog'].includes(newPet.animal)) {
     status.valid = false;
     status.errors.push('Invalid pet type entered.');
   }
@@ -94,9 +94,49 @@ function validatePetListing(newPet) {
   return status;
 }
 
+// validates the query by checking that all validation tests passed
+// im so sorry to whoever reads this
+function validateQuery(query) {
+  return ((!query.animal || !['Cat', 'Dog'].includes(query.animal))
+    && (!query.breed)
+    && ((query.age === undefined || Number(query.age) < 0 
+    || Number(query.age) > 30))
+    && (!query.gender || !['Male', 'Female'].includes(query.gender))
+    && (!query.behaviour 
+      || !['Cats', 'Dogs', 'Children', 'None - Wild'].some(beh => query.behaviour.includes(beh))));
+}
+
+// returns true if all query conditions are satisfied
+function filterPetQuery(pet, query) {
+  console.log(pet)
+  // type
+  if (query.animal !== pet.animal)
+    return false;
+
+  // breed
+  if (query.breed !== 'None' && query.breed !== pet.breed)
+    return false;
+
+  // age
+  if (query.age !== 'None' && Number.parseInt(query.age.match(/\d/)) < Number.parseInt(pet.age.match(/\d/)))
+      return false;
+
+  if (query.gender !== 'None' && query.gender !== pet.gender)
+    return false;
+
+  // convert into arrays to compare consistently
+  if (!Array.isArray(pet.behaviour))
+    pet.behaviour = pet.behaviour.split(', ');
+  if (!Array.isArray(query.behaviour))
+    query.behaviour = query.behaviour.split(', ');
+
+  return query.behaviour.includes('None') || query.behaviour.some(behaviour => pet.behaviour.includes(behaviour));
+}
+
 export { 
   writePetListing, 
   getPetListing, 
   validatePetListing, 
-  deleteInvalidPhoto 
+  deleteInvalidPhoto, 
+  filterPetQuery
 };

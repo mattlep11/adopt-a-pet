@@ -56,6 +56,7 @@ router.get('/browse', async (req, res) => {
     pets: petListings
   });
 });
+
 router.get('/cat-care', (req, res) => {
   res.render('cat-care', {
     title: 'Cat Care',
@@ -123,6 +124,23 @@ router.get('/pet-finder', (req, res) => {
     extraStylesheet: '/assets/styles/forms.css',
     extraScript: '<script defer src="/scripts/input-validation.js"></script>',
     currentRoute: '/pet-finder'
+  });
+});
+
+// result of pet-finder will route HERE
+router.get('/browse-filtered', async (req, res) => {
+  const petListings = await data.getPetListing(petJSON);
+  
+  const filteredListings = petListings.filter(listing => {
+    return data.filterPetQuery(listing, req.query) 
+  });
+
+  res.render('browse', {
+    title: 'Pet Browser',
+    extraStylesheet: '/assets/styles/browse.css',
+    currentRoute: '/browse',
+    pets: filteredListings,
+    tagline: `Your filtered pet search:`
   });
 });
 

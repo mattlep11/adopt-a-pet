@@ -3,7 +3,7 @@ const ERROR_TOOLTIPS = document.getElementsByClassName('error-tooltip');
 
 // the different fields that must be validated and the corresponding input type
 const INPUT_TYPES = {
-  'animal-type': 'radio',
+  'animal': 'radio',
   'name': 'text',
   'photo': 'file',
   'breed': 'checkbox',
@@ -144,12 +144,20 @@ FORM.addEventListener('submit', e => {
   }
   else {
     const formData = new FormData(FORM);
-    if (POST_DEST === "/giveaway-form")
+    if (POST_DEST === '/giveaway-form')
       postToGiveaway(formData);
-    else if (POST_DEST === "/pet-finder")
+    else if (POST_DEST === '/browse-filtered')
       postToFinder(formData);
     else
-      console.error("Invalid post destination. Something went wrong.");
+      console.error('Invalid post destination. Something went wrong.');
+
+    // clear the checkoxes back to normal
+    [...DISABLER_CHECKBOXES].forEach(cbox => {
+    if (cbox.checked) {
+      cbox.checked = false;
+      toggleCheckboxes(cbox, [...document.getElementsByName(cbox.name)]);
+    }
+  });
   }
 
   // remove the error class from everything that has been since validated
@@ -157,7 +165,7 @@ FORM.addEventListener('submit', e => {
 });
 
 function postToGiveaway(formData) {
-  fetch("/giveaway-form", {
+  fetch('/giveaway-form', {
     method: 'POST',
     body: formData
   })
@@ -173,15 +181,17 @@ function postToGiveaway(formData) {
 
 function postToFinder(formData) {
   const dataParams = new URLSearchParams(formData);
+  window.location.href = '/browse-filtered?' + dataParams;
+  FORM.reset();
 }
 
 function displayResultNotif(success, errors) {
   let notif;
   if (success)
-    notif = document.getElementById("notif-valid");
+    notif = document.getElementById('notif-valid');
   else {
-    notif = document.getElementById("notif-invalid");
-    const errorSpan = document.getElementById("notif-errors");
+    notif = document.getElementById('notif-invalid');
+    const errorSpan = document.getElementById('notif-errors');
 
     errorSpan.innerText = ''; // clear old errors if used
     console.log(errors);

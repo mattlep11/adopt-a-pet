@@ -3,16 +3,16 @@
   <img id="form-img" src="/assets/form_undraw.svg"
     alt="Two papers on top of each other.">
   <h2>Please fill out the following to help you find a new best friend!</h2>
-  <form id="pet-form" action="#" method="get">
-    <fieldset id="animal-type" class="guideline">
+  <form id="pet-form" action="/browse-filtered" method="get">
+    <fieldset id="animal" class="guideline">
       <legend class="question-header">Animal of choice:
         <span class="error-tooltip">Select one</span>
       </legend>
       <label for="cat">
-        Cat <input type="radio" name="animal-type" value="cat" id="cat">
+        Cat <input type="radio" name="animal" value="Cat" id="cat">
       </label>
       <label for="dog">
-        Dog <input type="radio" name="animal-type" value="dog" id="dog">
+        Dog <input type="radio" name="animal" value="Dog" id="dog">
       </label>
     </fieldset>
     <hr>
@@ -24,15 +24,15 @@
       <div class="breed-list">
         <label for="tabby">
           Tabby Cat
-          <input type="checkbox" name="breed" value="tabby" id="tabby">
+          <input type="checkbox" name="breed" value="Tabby" id="tabby">
         </label>
         <label for="shorthair">
           Shorthair Cat
-          <input type="checkbox" name="breed" value="shorthair" id="shorthair">
+          <input type="checkbox" name="breed" value="Shorthair" id="shorthair">
         </label>
         <label for="longhair">
           Longhair Cat
-          <input type="checkbox" name="breed" value="longhair" id="longhair">
+          <input type="checkbox" name="breed" value="Longhair" id="longhair">
         </label>
       </div>
       <br>
@@ -40,21 +40,21 @@
       <div class="breed-list">
         <label for="german">
           German Shepherd
-          <input type="checkbox" name="breed" value="german" id="german">
+          <input type="checkbox" name="breed" value="German" id="german">
         </label>
         <label for="pug">
           Pug
-          <input type="checkbox" name="breed" value="pug" id="pug">
+          <input type="checkbox" name="breed" value="Pug" id="pug">
         </label>
         <label for="poodle">
           Poodle
-          <input type="checkbox" name="breed" value="poodle" id="poodle">
+          <input type="checkbox" name="breed" value="Poodle" id="poodle">
         </label>
       </div>
       <br>
       <label for="no-pref-breed">
         No preference / Not listed
-        <input type="checkbox" name="breed" value="no-pref" class="none-chosen"
+        <input type="checkbox" name="breed" value="None" class="none-chosen"
           id="no-pref-breed">
       </label>
     </fieldset>
@@ -72,7 +72,7 @@
           <option value="6">6</option>
           <option value="7">7</option>
           <option value="8+">8+</option>
-          <option value="no-pref">No preference</option>
+          <option value="None">No preference</option>
         </select>
         <span class="error-tooltip">Make a selection</span>
       </label>
@@ -83,36 +83,36 @@
         <span class="error-tooltip">Select one</span>
       </legend>
       <label for="male">
-        Male <input type="radio" name="gender" value="male" id="male">
+        Male <input type="radio" name="gender" value="Male" id="male">
       </label>
       <label for="female">
-        Female <input type="radio" name="gender" value="female" id="female">
+        Female <input type="radio" name="gender" value="Female" id="female">
       </label>
       <label for="no-pref-gender">
-        No preference <input type="radio" name="gender" value="no-pref"
+        No preference <input type="radio" name="gender" value="None"
           id="no-pref-gender">
       </label>
     </fieldset>
     <hr>
-    <fieldset id="gets-along-with" class="guideline">
+    <fieldset id="behaviour" class="guideline">
       <legend class="question-header">Your new pet needs to get along with...
         <span class="error-tooltip">Select at least one</span>
       </legend>
       <label for="dogs">
         Other Dogs
-        <input type="checkbox" name="gets-along-with" value="dogs" id="dogs">
+        <input type="checkbox" name="behaviour" value="Dogs" id="dogs">
       </label>
       <label for="cats">
         Other Cats
-        <input type="checkbox" name="gets-along-with" value="cats" id="cats">
+        <input type="checkbox" name="behaviour" value="Cats" id="cats">
       </label>
       <label for="kids">
         Children
-        <input type="checkbox" name="gets-along-with" value="kids" id="kids">
+        <input type="checkbox" name="behaviour" value="Children" id="kids">
       </label>
       <label for="no-pref">
         No Restrictions
-        <input type="checkbox" name="gets-along-with" value="no-pref"
+        <input type="checkbox" name="behaviour" value="None"
           class="none-chosen" id="no-pref">
       </label>
     </fieldset>
