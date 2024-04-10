@@ -1,5 +1,11 @@
 {{!< main}}
 <main id="content-wrapper">
+    <div id="notif-valid">
+    <div class="subject-line">
+      <i id="valid-i" class="fa-solid fa-thumbs-up"></i>
+      <p id="subject">Account Created!</p>
+    </div>
+  </div>
   <div id="notif-invalid">
     <div class="subject-line">
       <i class="fa-solid fa-triangle-exclamation"></i>
@@ -32,13 +38,15 @@
     <h2>Enter your details to make your new account.</h1>
     <label for="create-user">Enter a username:</label>
     <input type="text" name="user" id="create-user" maxlength="64">
-    <span class="requirements">Min. 5 characters</span>
+    <span class="requirements">Min. 5 characters, no symbols</span>
     <label for="create-pass">
       Enter your password:
       <i class="pass-viewer fa-regular fa-eye-slash"></i>
     </label>
     <input type="password" name="pass" id="create-pass" maxlength="64">
-    <span class="requirements">Min. 8 characters, 1 number & symbol</span>
+    <span class="requirements">
+      Min. 8 characters, 1 number & letter, no symbols
+    </span>
     <label for="validate-pass">
       Enter your password again to confirm:
       <i class="pass-viewer fa-regular fa-eye-slash"></i>

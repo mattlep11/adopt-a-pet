@@ -1,3 +1,5 @@
+import displayResultNotif from "./notification.js";
+
 [...document.getElementsByClassName('pass-viewer')].forEach(icon => {
   icon.addEventListener('click', function() {
     const passbox = document.getElementById(this.parentNode.htmlFor);
@@ -48,18 +50,25 @@ function swapForms(from, to) {
   from.style.animation = 'short-fade-out 500ms ease-in-out';
 }
 
+// checks if a string has a symbol
+function hasSymbol(str) {
+  return /[!@#$%^&*()\-_=+{}[\]\\|;:'",<.>/?`~]/.test(str);
+}
+
 // validates >8 characters, at least 1 number and 1 symbol
 function validatePassword(pass) {
   return pass.length >= 8
-    && /\d/.test(pass)
-    && /[!@#$%^&*()\-_=+{}[\]\\|;:'",<.>/?`~]/.test(pass);
+    && /[A-Za-z]/.test(pass) // one letter
+    && /\d/.test(pass) // one number
+    && !hasSymbol(pass); // no symbols
 }
+
 
 // verifies all base requirements are met for new account details
 function validateAccountCreation(form) {
   let valid = [true, true, true];
   const inputs = form.getElementsByTagName('input');
-  if (inputs[0].value.length < 5) {
+  if (inputs[0].value.length < 5 || hasSymbol(inputs[0].value)) {
     inputs[0].nextElementSibling.style.color = 'var(--error-red)';
     valid[0] = false;
   }
@@ -98,34 +107,6 @@ function clearErrorColours(parent, validArr) {
       spans[i].style.color = 'var(--subtext)';
 }
 
-function displayErrorNotif(errors) {
-  const notif = document.getElementById('notif-invalid');
-  const errorSpan = document.getElementById('notif-errors');
-
-  errorSpan.innerText = ''; // clear old errors if used
-  errorSpan.innerText = errors.map((error, idx) => (idx === 0 ? ` - ${error}` : `\n - ${error}`)).join('');
-  
-  notif.style.display = 'block';
-  notif.style.animation = 'slide-up 400ms ease-out forwards, fade-out 13s ease-out 400ms forwards';
-
-  function onAnimationEnd() {
-    let animationCount = 0;
-    // remove the event listener after the two fire so they can be reused
-    function removeListener() {
-      if (animationCount == 1)  {
-        notif.style.display = 'none';
-        notif.style.animation = 'none';
-        notif.removeEventListener('animationend', onAnimationEnd);
-      }
-      animationCount++;
-    }
-
-    return removeListener;
-  }
-
-  notif.addEventListener('animationend', onAnimationEnd());
-}
-
 function post(form, route) {
   const formData = new FormData(form);
   const urlParams = new URLSearchParams(formData);
@@ -137,7 +118,11 @@ function post(form, route) {
   .then(response => response.json())
   .then(data => {
     if (!data.ok)
-      displayErrorNotif(data.errors)
+      displayResultNotif(false, data.errors)
+    else {
+      form.reset();
+      displayResultNotif(true);
+    }
   })
   .catch(err => console.error(`Something went wrong: ${err.message}`));
 }

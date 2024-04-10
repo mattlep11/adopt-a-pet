@@ -1,4 +1,41 @@
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
+
+export async function findUser(path, username) {
+  const file = await fs.open(path, 'r');
+  
+  let target = [];
+  for await (const line of file.readLines()) {
+    const user = line.split(':');
+    if (username === user[0]) {
+      target = user;
+      break;
+    }
+  }
+
+  return target;
+}
+
+export function writeUser(path, newUser) {
+  const entry = `${newUser.user.trim()}:${newUser.pass}`;
+
+  try {
+    fs.appendFile(path, entry + '\n');
+    return true;
+  } catch (err) {
+    console.error(`Something went wrong: ${err.message}`);
+    return false;
+  }
+}
+
+// returns true if the username already exists
+export async function collidesUsername(path, username) {
+  const target = await findUser(path, username);
+  return target.length > 0;
+}
+
+function hasSymbol(str) {
+  /[!@#$%^&*()\-_=+{}[\]\\|;:'",<.>/?`~]/.test(str);
+}
 
 const maxLength = 64;
 export function validateSignIn(user) {
@@ -18,13 +55,14 @@ export function validateSignIn(user) {
 export function validateAccountCreation(newUser) {
   let status = { ok: true, errors: [] };
 
-  if (newUser.user.length < 5) {
+  if (newUser.user.length < 5 || hasSymbol(newUser.user)) {
     status.ok = false;
-    status.errors.push('Username is too short.');
+    status.errors.push('Username does not meet criteria');
   }
   if (newUser.pass.length < 8
-    && !/\d/.test(newUser.pass)
-    && !/[!@#$%^&*()\-_=+{}[\]\\|;:'",<.>/?`~]/.test(newUser.pass)) {
+    || !/[A-Za-z]/.test(newUser.pass)
+    || !/\d/.test(newUser.pass)
+    || hasSymbol(newUser.pass)) {
       status.ok = false;
       status.errors.push('Password does not meet criteria.');
   }

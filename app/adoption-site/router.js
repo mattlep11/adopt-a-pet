@@ -36,6 +36,7 @@ const upload = multer({
 });
 
 const petJSON = path.join(__dirname, 'data', 'pet_information.json');
+const userTXT = path.join(__dirname, 'data', 'users.txt');
 
 // HTTP REQUESTS
 
@@ -51,7 +52,7 @@ router.get('/accounts', (req, res) => {
   res.render('accounts', {
     title: "Sign in",
     extraStylesheet: '/assets/styles/accounts.css',
-    extraScript: '<script defer src="/scripts/accounts.js"></script>',
+    extraScript: '<script type="module" src="/scripts/accounts.js"></script>',
     currentRoute: '/accounts'
   })
 });
@@ -65,13 +66,27 @@ router.post('/sign-in', (req, res) => {
     res.status(400).json(status);
 });
 
-router.post('/create-acc', (req, res) => {
+router.post('/create-acc', async (req, res) => {
   const status = users.validateAccountCreation(req.body);
-  
-  if (status.ok) {
-    // create account and redirect
-  } else 
+  const nameCollision = await users.collidesUsername(userTXT, req.body.user);
+
+  if (status.ok && !nameCollision) {
+    if (users.writeUser(userTXT, req.body))
+      res.json(status);
+    else
+      res.status(500).json({
+        ok: false, 
+        message: 'An error occured', 
+        errors: ['A server error occured.']
+      });
+  } else {
+    if (nameCollision) {
+      status.ok = false;
+      status.errors.push('Username already exists.');
+    }
+
     res.status(400).json(status);
+  }
 });
 
 router.get('/browse', async (req, res) => {
@@ -121,7 +136,7 @@ router.get('/giveaway-form', (req, res) => {
   res.render('giveaway-form', {
     title: 'Adoption Form',
     extraStylesheet: '/assets/styles/forms.css',
-    extraScript: '<script defer src="/scripts/input-validation.js"></script>',
+    extraScript: '<script type="module" src="/scripts/input-validation.js"></script>',
     currentRoute: '/giveaway-form'
   });
 });
@@ -152,7 +167,7 @@ router.get('/pet-finder', (req, res) => {
   res.render('pet-finder', {
     title: 'Find an Adoptee',
     extraStylesheet: '/assets/styles/forms.css',
-    extraScript: '<script defer src="/scripts/input-validation.js"></script>',
+    extraScript: '<script type="module" src="/scripts/input-validation.js"></script>',
     currentRoute: '/pet-finder'
   });
 });

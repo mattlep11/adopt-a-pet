@@ -124,6 +124,7 @@ input[type='submit']:active {
   height: 60%;
 }
 
+#notif-valid,
 #notif-invalid {
   display: none;
   position: absolute;
@@ -132,8 +133,12 @@ input[type='submit']:active {
   padding: 1vw 1vh;
   border-radius: 2px;
   z-index: 99;
+  background: var(--secondary);
+}
+#notif-invalid {
   background: rgb(199, 109, 109);
 }
+#notif-valid .subject-line,
 #notif-invalid .subject-line {
   display: flex;
   align-items: center;
