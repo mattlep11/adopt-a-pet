@@ -57,13 +57,28 @@ router.get('/accounts', (req, res) => {
   })
 });
 
-router.post('/sign-in', (req, res) => {
+router.post('/sign-in', async (req, res) => {
   const status = users.validateSignIn(req.body);
 
-  if (status.ok) {
-    // sign in and redirect
-  } else
+  const target = await users.findUser(userTXT, req.body.user);
+  const match = target[1] === req.body.pass;
+
+  if (status.ok && target.length > 0 && match) {
+    // open session
+    status.redirect = '/';
+    res.json(status);
+  } else {
+    if (target.length === 0) { // user not found
+      status.ok = false;
+      status.errors.push('Account not found');
+    }
+    else if (!match) {
+      status.ok = false;
+      status.errors.push('Incorrect password.');
+    }
+
     res.status(400).json(status);
+  }
 });
 
 router.post('/create-acc', async (req, res) => {

@@ -113,13 +113,17 @@ function post(form, route) {
 
   fetch(route, {
     method: 'POST',
-    body: urlParams
+    body: urlParams,
+    redirect: 'manual'
   })
   .then(response => response.json())
   .then(data => {
     if (!data.ok)
       displayResultNotif(false, data.errors)
     else {
+      if (data.redirect)
+        window.location.href = data.redirect;
+
       form.reset();
       displayResultNotif(true);
     }
