@@ -2,7 +2,13 @@
 <main id="content-wrapper">
   <div>
     <div>
-      <h2 id="hero-banner">Ready to find your new best friend?</h2>
+      <h2 id="hero-banner">
+        {{#if sessionName}}
+          Hello {{sessionName}}!
+        {{else}}
+          Ready to find your new best friend?
+        {{/if}}  
+        </h2>
       <h3 id="hero-subtext">Welcome to dogs and cats. The best adoption centre
         to find local rescues.</h3>
     </div>

@@ -3,7 +3,11 @@
     <ul>
       <li >
         <a class="navlink {{active "/accounts" currentRoute}}" href="./accounts">
-          Sign-In
+          {{#if sessionName}}
+            Sign Out
+            {{else}}
+            Sign In
+          {{/if}}
           <i class="fa-solid fa-address-card"></i>
         </a>
       </li>

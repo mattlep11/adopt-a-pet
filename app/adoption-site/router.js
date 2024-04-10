@@ -44,16 +44,33 @@ router.get('/', (req, res) => {
   res.render('index', {
     title: 'Adopt a Pet',
     extraStylesheet: '/assets/styles/home.css',
-    currentRoute: '/index'
+    currentRoute: '/index',
+    sessionName: req.session.username
   });
 });
 
 router.get('/accounts', (req, res) => {
+  let name = req.session.username;
+  
+  // if they're signed in, simply sign them out.
+  if (req.session.username) {
+    req.session.destroy(err => {
+      if (err) console.error(`Something went wrong: ${err.message}`);
+      else {
+        name = undefined; // prevent an error if the sign out occurs
+        res.redirect('/');
+      }
+    });
+
+    return; // prevent render response
+  }
+
   res.render('accounts', {
     title: "Sign in",
     extraStylesheet: '/assets/styles/accounts.css',
     extraScript: '<script type="module" src="/scripts/accounts.js"></script>',
-    currentRoute: '/accounts'
+    currentRoute: '/accounts',
+    sessionName: name
   })
 });
 
@@ -64,7 +81,13 @@ router.post('/sign-in', async (req, res) => {
   const match = target[1] === req.body.pass;
 
   if (status.ok && target.length > 0 && match) {
-    // open session
+    let username = target[0];
+
+    // reduce the length if its too long
+    if (username.length > 20)
+      username = username.substring(0, 20) + '...';
+
+    req.session.username = username;
     status.redirect = '/';
     res.json(status);
   } else {
@@ -111,7 +134,8 @@ router.get('/browse', async (req, res) => {
     title: 'Pet Browser',
     extraStylesheet: '/assets/styles/browse.css',
     currentRoute: '/browse',
-    pets: petListings
+    pets: petListings,
+    sessionName: req.session.username
   });
 });
 
@@ -119,7 +143,8 @@ router.get('/cat-care', (req, res) => {
   res.render('cat-care', {
     title: 'Cat Care',
     extraStylesheet: '/assets/styles/pet-care.css',
-    currentRoute: '/cat-care'
+    currentRoute: '/cat-care',
+    sessionName: req.session.username
   });
 });
 
@@ -127,7 +152,8 @@ router.get('/contact', (req, res) => {
   res.render('contact', {
     title: 'Contact Us!',
     extraStylesheet: '/assets/styles/contact.css',
-    currentRoute: '/contact'
+    currentRoute: '/contact',
+    sessionName: req.session.username
   });
 });
 
@@ -135,7 +161,8 @@ router.get('/credits', (req, res) => {
   res.render('credits', {
     title: 'Credits',
     extraStylesheet: '/assets/styles/credits.css',
-    currentRoute: '/credits'
+    currentRoute: '/credits',
+    sessionName: req.session.username
   });
 });
 
@@ -143,7 +170,8 @@ router.get('/dog-care', (req, res) => {
   res.render('dog-care', {
     title: 'Dog Care',
     extraStylesheet: '/assets/styles/pet-care.css',
-    currentRoute: '/dog-care'
+    currentRoute: '/dog-care',
+    sessionName: req.session.username
   });
 });
 
@@ -152,7 +180,8 @@ router.get('/giveaway-form', (req, res) => {
     title: 'Adoption Form',
     extraStylesheet: '/assets/styles/forms.css',
     extraScript: '<script type="module" src="/scripts/input-validation.js"></script>',
-    currentRoute: '/giveaway-form'
+    currentRoute: '/giveaway-form',
+    sessionName: req.session.username
   });
 });
 
@@ -183,7 +212,8 @@ router.get('/pet-finder', (req, res) => {
     title: 'Find an Adoptee',
     extraStylesheet: '/assets/styles/forms.css',
     extraScript: '<script type="module" src="/scripts/input-validation.js"></script>',
-    currentRoute: '/pet-finder'
+    currentRoute: '/pet-finder',
+    sessionName: req.session.username
   });
 });
 
@@ -202,7 +232,8 @@ router.get('/browse-filtered', async (req, res) => {
     extraStylesheet: '/assets/styles/browse.css',
     currentRoute: '/browse',
     pets: filteredListings,
-    tagline: `Your filtered pet search:`
+    tagline: `Your filtered pet search:`,
+    sessionName: req.session.username
   });
 });
 
@@ -210,7 +241,8 @@ router.get('/privacy', (req, res) => {
   res.render('privacy', {
     title: 'Privacy Policy',
     extraStylesheet: '/assets/styles/privacy.css',
-    currentRoute: '/privacy'
+    currentRoute: '/privacy',
+    sessionName: req.session.username
   });
 });
 
@@ -218,6 +250,7 @@ router.get('/*', (req, res) => {
   res.render('err', {
     title: 'Page Not Found',
     extraStylesheet: '/assets/styles/404.css',
-    currentRoute: '/404'
+    currentRoute: '/404',
+    sessionName: req.session.username
   });
 });
