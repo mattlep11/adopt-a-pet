@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { Router } from 'express';
 import multer from 'multer';
 import * as data from '../data.js';
+import * as users from '../users.js';
 
 export const router = new Router();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -53,6 +54,24 @@ router.get('/accounts', (req, res) => {
     extraScript: '<script defer src="/scripts/accounts.js"></script>',
     currentRoute: '/accounts'
   })
+});
+
+router.post('/sign-in', (req, res) => {
+  const status = users.validateSignIn(req.body);
+
+  if (status.ok) {
+    // sign in and redirect
+  } else
+    res.status(400).json(status);
+});
+
+router.post('/create-acc', (req, res) => {
+  const status = users.validateAccountCreation(req.body);
+  
+  if (status.ok) {
+    // create account and redirect
+  } else 
+    res.status(400).json(status);
 });
 
 router.get('/browse', async (req, res) => {

@@ -1,5 +1,6 @@
 #content-wrapper {
   position: relative;
+  --subtext: rgba(140, 140, 140);
   --error-red: rgb(150, 24, 24); 
   --max-fieldset-size: 57rem;
   font-size: 1.5rem;
@@ -59,7 +60,10 @@ form h2 {
   align-self: center;
 }
 
-input { font-family: inherit; }
+input { 
+  font-family: inherit; 
+  width: 100%;
+}
 
 fieldset { border: none; }
 fieldset input {
@@ -95,9 +99,17 @@ input[type='submit']:active {
   filter: hue-rotate(-15deg);
 }
 
+.requirements {
+  width: 100%;
+  text-align: end;
+  margin-top: -1rem;
+  font-size: 1.2rem;
+  color: var(--subtext);
+}
+
 #switch-to-create,
 #switch-to-sign {
-  color: rgba(140, 140, 140);
+  color: var(--subtext);
   font-size: 1.1rem;
   text-align: center;
   cursor: pointer;
@@ -112,22 +124,62 @@ input[type='submit']:active {
   height: 60%;
 }
 
+#notif-invalid {
+  display: none;
+  position: absolute;
+  bottom: calc(var(--footer-height) + 5%);
+  right: calc(var(--sidebar-shadow-width) + 5%);
+  padding: 1vw 1vh;
+  border-radius: 2px;
+  z-index: 99;
+  background: rgb(199, 109, 109);
+}
+#notif-invalid .subject-line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+#notif-invalid  #notif-errors {
+  font-family: inherit;
+}
+
 @media (prefers-color-scheme: light) {
   form {
     --form-bg: #c0c2b9;;
   }
-  #switch-to-create,
-  #switch-to-sign {
-  color: rgba(30, 30, 30);
+  #content-wrapper {
+    --subtext: rgba(30, 30, 30);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes fade-out {
+  5% { opacity: 1; }
+  80% { opacity: 1 }
+  100% { opacity: 0; }
+}
+
+@keyframes short-fade-out {
   from { opacity: 1 }
   to { opacity: 0 }
 }
 
-@keyframes fade-in {
+@keyframes short-fade-in {
   from { opacity: 0 }
   to { opacity: 1 }
 }
