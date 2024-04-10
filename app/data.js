@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 
 // writes a new pet into the petJSON
-function writePetListing(path, newPet) {
+export function writePetListing(path, newPet) {
   const listings = getPetListing(path);
   listings.then(response => {
     response.push(newPet);
@@ -14,7 +14,7 @@ function writePetListing(path, newPet) {
 }
 
 // returns the pet listings from the file as an array of objects
-function getPetListing(path) {
+export function getPetListing(path) {
   return new Promise((res, rej) => {
     fs.readFile(path, 'utf-8', (err, data) => {
       if (err) {
@@ -28,7 +28,7 @@ function getPetListing(path) {
 }
 
 // deletes a photo after a failed POST request to giveaway
-function deleteInvalidPhoto(filename) {
+export function deleteInvalidPhoto(filename) {
   fs.unlink(filename, err => {
     if (err) console.error(`Failed to delete file: ${err.message}`);
   });
@@ -39,7 +39,7 @@ function deleteInvalidPhoto(filename) {
 // matches the email regex, and the file photo has the proper extension
 const maxDesc = 172;
 const email = /^[\w\-.]+@([\w\-]+\.)+(\w{2,3})$/m;
-function validatePetListing(newPet) {
+export function validatePetListing(newPet) {
   const status = { valid: 'true', errors: []};
 
   // name existence & length
@@ -86,7 +86,6 @@ function validatePetListing(newPet) {
   }
   // email format
   if (!newPet.email || !email.test(newPet.email)) {
-    console.log("failed here")
     status.valid = false;
     status.errors.push('Invalid email format entered.');
   }
@@ -96,19 +95,16 @@ function validatePetListing(newPet) {
 
 // validates the query by checking that all validation tests passed
 // im so sorry to whoever reads this
-function validateQuery(query) {
-  return ((!query.animal || !['Cat', 'Dog'].includes(query.animal))
-    && (!query.breed)
-    && ((query.age === undefined || Number(query.age) < 0 
-    || Number(query.age) > 30))
-    && (!query.gender || !['Male', 'Female'].includes(query.gender))
-    && (!query.behaviour 
-      || !['Cats', 'Dogs', 'Children', 'None - Wild'].some(beh => query.behaviour.includes(beh))));
+export function validateQuery(query) {
+  return (query.animal && ['Cat', 'Dog'].includes(query.animal)
+    && query.breed
+    && query.age !== undefined && Number(query.age) >= 0 && Number(query.age) <= 30
+    && query.gender && ['Male', 'Female'].includes(query.gender)
+    && query.behaviour && ['Cats', 'Dogs', 'Children', 'None - Wild'].some(beh => query.behaviour.includes(beh)));
 }
 
 // returns true if all query conditions are satisfied
-function filterPetQuery(pet, query) {
-  console.log(pet)
+export function filterPetQuery(pet, query) {
   // type
   if (query.animal !== pet.animal)
     return false;
@@ -132,11 +128,3 @@ function filterPetQuery(pet, query) {
 
   return query.behaviour.includes('None') || query.behaviour.some(behaviour => pet.behaviour.includes(behaviour));
 }
-
-export { 
-  writePetListing, 
-  getPetListing, 
-  validatePetListing, 
-  deleteInvalidPhoto, 
-  filterPetQuery
-};

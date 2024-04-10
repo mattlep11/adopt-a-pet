@@ -139,10 +139,12 @@ router.get('/pet-finder', (req, res) => {
 // result of pet-finder will route HERE
 router.get('/browse-filtered', async (req, res) => {
   const petListings = await data.getPetListing(petJSON);
-  
-  const filteredListings = petListings.filter(listing => {
-    return data.filterPetQuery(listing, req.query) 
-  });
+
+  let filteredListings = [];
+  if (data.validateQuery(req.body))
+    filteredListings = petListings.filter(listing => {
+      return data.filterPetQuery(listing, req.query) 
+    });
 
   res.render('browse', {
     title: 'Pet Browser',
