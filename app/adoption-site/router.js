@@ -2,7 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Router } from 'express';
 import multer from 'multer';
-import * as data from '../data.js';
+import * as pets from '../pets.js';
 import * as users from '../users.js';
 
 export const router = new Router();
@@ -75,7 +75,7 @@ router.post('/create-acc', (req, res) => {
 });
 
 router.get('/browse', async (req, res) => {
-  const petListings = await data.getPetListing(petJSON);
+  const petListings = await pets.readPets(petJSON);
 
   res.render('browse', {
     title: 'Pet Browser',
@@ -128,19 +128,21 @@ router.get('/giveaway-form', (req, res) => {
 
 router.post('/giveaway-form', upload.single('photo'), (req, res) => {
   const newPet = req.body;
-  const status = data.validatePetListing(newPet);
+  const status = pets.validatePetListing(newPet);
 
   if (status.valid) {
     newPet.photo = path.join('uploads', req.file.filename);
     if (Array.isArray(newPet.behaviour))
       newPet.behaviour = newPet.behaviour.join(", ");
   
-    data.writePetListing(petJSON, newPet);
-    res.json({ok: true, message: 'Listing uploaded successfully!' });
+    if (pets.writePet(petJSON, newPet))
+      res.json({ok: true, message: 'Listing uploaded successfully!' });
+    else
+      res.status(500).json({ok: false, message: 'An error occured.'});
 
   } else {
     // delete the photo file relating to the invalid post
-    data.deleteInvalidPhoto(path.join(__dirname, 'uploads', req.file.filename));
+    pets.deleteInvalidPhoto(path.join(__dirname, 'uploads', req.file.filename));
 
     res.status(400).json({ok: false, message: 'Invalid information was found. Please resubmit.', errors: status.errors })
   }
@@ -157,12 +159,12 @@ router.get('/pet-finder', (req, res) => {
 
 // result of pet-finder will route HERE
 router.get('/browse-filtered', async (req, res) => {
-  const petListings = await data.getPetListing(petJSON);
+  const petListings = await pets.readPets(petJSON);
 
   let filteredListings = [];
-  if (data.validateQuery(req.body))
+  if (pets.validateQuery(req.body))
     filteredListings = petListings.filter(listing => {
-      return data.filterPetQuery(listing, req.query) 
+      return pets.filterPetQuery(listing, req.query) 
     });
 
   res.render('browse', {
