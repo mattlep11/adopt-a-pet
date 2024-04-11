@@ -234,7 +234,7 @@ router.get('/browse-filtered', async (req, res) => {
   const petListings = await pets.readPets(petJSON);
 
   let filteredListings = [];
-  if (pets.validateQuery(req.body))
+  if (pets.validateQuery(req.query))
     filteredListings = petListings.filter(listing => {
       return pets.filterPetQuery(listing, req.query) 
     });

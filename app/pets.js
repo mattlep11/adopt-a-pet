@@ -93,9 +93,10 @@ export function validatePetListing(newPet) {
 export function validateQuery(query) {
   return (query.animal && ['Cat', 'Dog'].includes(query.animal)
     && query.breed
-    && query.age !== undefined && Number(query.age) >= 0 && Number(query.age) <= 30
-    && query.gender && ['Male', 'Female'].includes(query.gender)
-    && query.behaviour && ['Cats', 'Dogs', 'Children', 'None - Wild'].some(beh => query.behaviour.includes(beh)));
+    && query.age !== undefined 
+    && (query.age === 'None' || Number(query.age) >= 0 && Number(query.age) <= 30)
+    && query.gender && ['Male', 'Female', 'None'].includes(query.gender)
+    && query.behaviour && ['Cats', 'Dogs', 'Children', 'None'].some(beh => query.behaviour.includes(beh)));
 }
 
 // returns true if all query conditions are satisfied
