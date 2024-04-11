@@ -15,6 +15,7 @@ export async function writePet(path, data) {
     const file = await readPets(path);
     file.push(data);
     await fs.writeFile(path, JSON.stringify(file));
+    console.log(`Successfully wrote new pet: ${pet.name}, ${pet.animal}`);
     return true;
   } catch (err) {
     console.error(`Failed to write file: ${err.message}`);

@@ -1,3 +1,15 @@
+let animationCount = 0; 
+
+function removeListener() {
+  if (animationCount == 1)  {
+    this.style.display = 'none';
+    this.style.animation = 'none';
+    this.removeEventListener('animationend', onAnimationEnd);
+    animationCount = 0;
+  }
+  animationCount++;
+}
+
 export default function displayResultNotif(success, errors) {
   let notif;
   if (success)
@@ -10,24 +22,14 @@ export default function displayResultNotif(success, errors) {
     console.log(errors);
     errorSpan.innerText = errors.map((error, idx) => (idx === 0 ? ` - ${error}` : `\n - ${error}`)).join('');
   }
+
+  // cancel any ongoing animations
+  notif.style.animation = 'none'; 
+  void notif.offsetWidth;
+  notif.removeEventListener('animationend', removeListener);
   
   notif.style.display = 'block';
-  notif.style.animation = 'slide-up 400ms ease-out forwards, fade-out 13s ease-out 400ms forwards';
-
-  function onAnimationEnd() {
-    let animationCount = 0;
-    // remove the event listener after the two fire so they can be reused
-    function removeListener() {
-      if (animationCount == 1)  {
-        notif.style.display = 'none';
-        notif.style.animation = 'none';
-        notif.removeEventListener('animationend', onAnimationEnd);
-      }
-      animationCount++;
-    }
-
-    return removeListener;
-  }
+  notif.style.animation = 'slide-up 400ms ease-out forwards, fade-out 10s ease-out 400ms forwards';
 
   notif.addEventListener('animationend', onAnimationEnd());
 }

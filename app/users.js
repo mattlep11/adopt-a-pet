@@ -12,6 +12,7 @@ export async function findUser(path, username) {
     }
   }
 
+  file.close();
   return target;
 }
 
@@ -20,6 +21,7 @@ export function writeUser(path, newUser) {
 
   try {
     fs.appendFile(path, entry + '\n');
+    console.log(`Successfully wrote new user: ${newUser.user.trim()}`);
     return true;
   } catch (err) {
     console.error(`Something went wrong: ${err.message}`);

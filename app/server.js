@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: 'temp',
   saveUninitialized: false,
   resave: false,
 }));

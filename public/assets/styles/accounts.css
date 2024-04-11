@@ -127,7 +127,7 @@ input[type='submit']:active {
 #notif-valid,
 #notif-invalid {
   display: none;
-  position: absolute;
+  position: fixed;
   bottom: calc(var(--footer-height) + 5%);
   right: calc(var(--sidebar-shadow-width) + 5%);
   padding: 1vw 1vh;
