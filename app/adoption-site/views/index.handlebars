@@ -6,7 +6,12 @@
         {{#if sessionName}}
           Hello {{sessionName}}!
         {{else}}
-          Ready to find your new best friend?
+          {{#if signedOut}}
+            Thanks for stopping by! See you next time 
+            <i class="fa-solid fa-paw"></i>
+          {{else}}
+            Ready to find your new best friend?
+          {{/if}}
         {{/if}}  
         </h2>
       <h3 id="hero-subtext">Welcome to dogs and cats. The best adoption centre

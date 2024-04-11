@@ -41,11 +41,14 @@ const userTXT = path.join(__dirname, 'data', 'users.txt');
 // HTTP REQUESTS
 
 router.get('/', (req, res) => {
+  const signedOut = req.query.signedOut === 'true';
+
   res.render('index', {
     title: 'Adopt a Pet',
     extraStylesheet: '/assets/styles/home.css',
     currentRoute: '/index',
-    sessionName: req.session.username
+    sessionName: req.session.username,
+    signedOut: signedOut
   });
 });
 
@@ -58,7 +61,7 @@ router.get('/accounts', (req, res) => {
       if (err) console.error(`Something went wrong: ${err.message}`);
       else {
         name = undefined; // prevent an error if the sign out occurs
-        res.redirect('/');
+        res.redirect('/?signedOut=true');
       }
     });
 
