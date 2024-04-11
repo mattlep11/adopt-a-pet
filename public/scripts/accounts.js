@@ -154,3 +154,6 @@ CREATE_ACC_FORM.addEventListener('submit', (e) => {
 
   post(CREATE_ACC_FORM, '/create-acc');
 });
+CREATE_ACC_FORM.addEventListener('reset', () => {
+  document.getElementById('switch-to-sign').click();
+});

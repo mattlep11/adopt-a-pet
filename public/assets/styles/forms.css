@@ -223,7 +223,8 @@ legend.question-header ~ * {
   position: absolute;
   display: grid;
   place-items: center;
-  inset: 0;
+  border-radius: 2px;
+  inset: 0 calc(var(--sidebar-shadow-width) + 3rem);
   background: var(--faded-bg);
   z-index: 99;
 }
