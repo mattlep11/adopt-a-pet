@@ -2,6 +2,7 @@ import displayResultNotif from "./notification.js";
 
 const DISABLER_CHECKBOXES = document.getElementsByClassName('none-chosen');
 const ERROR_TOOLTIPS = document.getElementsByClassName('error-tooltip');
+const ANIMAL_RADIOS = document.getElementsByName('animal');
 
 // the different fields that must be validated and the corresponding input type
 const INPUT_TYPES = {
@@ -122,7 +123,7 @@ function fadeErrorMessages(invalidFields) {
 
 // add a listener to disable all checkboxes if a no-preference option is used
 [...DISABLER_CHECKBOXES].forEach(cbox => cbox.addEventListener('change', e => {
-  let node = e.target;
+  const node = e.target;
   if (node.checked || !node.checked)
     toggleCheckboxes(node, [...document.getElementsByName(node.name)]);
 }));
@@ -130,7 +131,30 @@ function fadeErrorMessages(invalidFields) {
 [...ERROR_TOOLTIPS].forEach(tooltip => 
   tooltip.addEventListener('animationend', e => {
     tooltip.style.animation = 'none';
-  }));
+}));
+
+// only show the values of the respective animal in the select drop down
+[...ANIMAL_RADIOS].forEach(radio => radio.addEventListener('click', e => {
+  const node = e.target;
+  const optgroups = [...document.getElementsByTagName('optgroup')];
+
+  for (let idx in optgroups) {
+    const group = optgroups[idx];
+    if (group.id !== undefined && group.id !== node.value) {
+      group.style.display = 'none';
+      const currentVal = group.parentNode.value;
+      const options = [...group.childNodes];
+      // reset the value if its not allowed
+      for (let jdx in options) {
+        if (currentVal === options[jdx].value)
+          group.parentNode.value = '';
+      }
+    }
+    else
+      group.style.display = 'block';
+  }
+  
+}));
 
 const FORM = document.getElementById('pet-form');
 const POST_DEST = FORM.action.match(/\/([^\/])+$/)[0];
