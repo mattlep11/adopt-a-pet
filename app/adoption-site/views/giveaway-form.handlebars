@@ -1,5 +1,15 @@
 {{!< main}} 
-<main id="content-wrapper">
+<main {{#unless sessionName}}class="no-scroll"{{/unless}} id="content-wrapper">
+  {{#unless sessionName}}
+    <div id="modal">
+      <div id="inner">
+        <h2>You need to be signed in to use this service</h2>
+        <p>
+          Sign in or create a new account <a href="/accounts">here</a>
+        </p>
+      </div>
+    </div>
+  {{/unless}}
   <div id="notif-valid">
     <div class="subject-line">
       <i id="valid-i" class="fa-solid fa-thumbs-up"></i>

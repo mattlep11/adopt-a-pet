@@ -186,6 +186,15 @@ router.get('/giveaway-form', (req, res) => {
 });
 
 router.post('/giveaway-form', upload.single('photo'), (req, res) => {
+  if (!req.session.username) {
+    res.status(401).json({
+      ok: false, 
+      message: 'No active session',
+      errors: ['You must be signed in']
+    });
+    return;
+  }
+
   const newPet = req.body;
   const status = pets.validatePetListing(newPet);
 
