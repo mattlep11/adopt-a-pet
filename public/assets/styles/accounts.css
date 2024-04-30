@@ -1,7 +1,5 @@
 #content-wrapper {
   position: relative;
-  --subtext: rgba(140, 140, 140);
-  --error-red: rgb(150, 24, 24); 
   --max-fieldset-size: 57rem;
   font-size: 1.5rem;
   text-shadow: 0 1px 2px var(--background);
@@ -30,7 +28,6 @@
 }
 
 form {
-  --form-bg: #20220b;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -148,15 +145,6 @@ input[type='submit']:active {
 }
 #notif-invalid  #notif-errors {
   font-family: inherit;
-}
-
-@media (prefers-color-scheme: light) {
-  form {
-    --form-bg: #c0c2b9;;
-  }
-  #content-wrapper {
-    --subtext: rgba(30, 30, 30);
-  }
 }
 
 @keyframes slide-up {

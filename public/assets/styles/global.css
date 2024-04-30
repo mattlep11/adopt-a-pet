@@ -1,31 +1,41 @@
 :root {
   font-size: 0.625rem;
   font-family: "Noto Sans", Arial, sans-serif;
+
+  /* LIGHT MODE DEFAULTS */
+  --text: #1d2108;
+  --background: #fafbef;
+  --background-accent: #edf0e0;
+  --primary: #b9cd37;
+  --secondary: #92e3af;
+  --accent: #68d9c3;
+
+  --form-bg: #e2e2df;
+  --faded-bg: rgba(237, 240, 224, 0.85);
+  --subtext: rgba(30, 30, 30);
+
+  --error-red: rgb(126, 2, 2); 
+  --err-bg-color: rgba(59, 58, 58, 0.6);
+
   color: var(--text);
 }
-@media (prefers-color-scheme: light) {
-  :root {
-    --text: #1d2108;
-    --background: #fafbef;
-    --background-accent: #edf0e0;
-    --primary: #b9cd37;
-    --secondary: #92e3af;
-    --accent: #68d9c3;
-  }
-  .lm-swap-contrast {
-    color: var(--background);
-    text-shadow: 3px 2px var(--text);
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #f3f7de;
-    --background: #0f1004;
-    --background-accent: #111305;
-    --primary: #b4c832;
-    --secondary: #1c6d39;
-    --accent: #269780;
-  }
+
+body.dark-mode {
+  --text: #f3f7de;
+  --background: #0f1004;
+  --background-accent: #111305;
+  --primary: #b4c832;
+  --secondary: #1c6d39;
+  --accent: #269780;
+
+  --form-bg: #20220b;
+  --faded-bg: rgba(17, 19, 5, 0.85);
+  --subtext: rgba(140, 140, 140);
+
+  --error-red: rgb(150, 24, 24);
+  --err-bg-color: rgba(151, 148, 148, 0.8);
+
+  color: var(--text);
 }
 
 *,
@@ -104,6 +114,10 @@ body {
 .logo-head {
   font-size: 3.6rem;
 }
+.lm-swap-contrast {
+  color: #fafbef;
+  text-shadow: 3px 2px #1d2108;
+}
 .datetime {
   opacity: 0.55;
   transition: opacity 200ms;
@@ -146,7 +160,7 @@ body {
 #navbar:hover::after {
   transform: scaleY(1.75);
 }
-#spinning-bone {
+#theme-switcher {
   position: absolute;
   top: 3rem;
   right: 50%;
@@ -155,8 +169,8 @@ body {
   transform-origin: center;
   cursor: pointer;
 }
-#spinning-bone:hover {
-  animation: spin-bone 500ms ease-in-out 1;
+#theme-switcher:hover {
+  animation: spin 500ms ease-in-out 1;
 }
 #navbar > ul {
   list-style-type: none;
@@ -175,7 +189,6 @@ body {
   width: 100%;
   border-radius: 4px;
   background: var(--secondary);
-  
   transition: padding 250ms, filter 250ms;
 }
 .navlink:hover {
@@ -219,9 +232,9 @@ body {
   }
 }
 
-@keyframes spin-bone {
+@keyframes spin {
   to {
-    transform: translate(50%) rotate(180deg) scale(1);
+    transform: translate(50%) rotate(360deg) scale(1);
   }
 }
 

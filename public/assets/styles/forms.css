@@ -1,5 +1,4 @@
 #content-wrapper {
-  --error-red: rgb(150, 24, 24); 
   --max-question-size: 55rem;
   position: relative;
   font-size: 1.3rem;
@@ -149,7 +148,6 @@ legend.question-header ~ * {
 }
 
 .error-tooltip {
-  --err-bg-color: rgba(151, 148, 148, 0.8);
   position: relative;
   font-size: 1.3rem;
   font-weight: normal;
@@ -219,7 +217,6 @@ legend.question-header ~ * {
 }
 
 #modal {
-  --faded-bg: rgba(17, 19, 5, 0.85);
   position: absolute;
   display: grid;
   place-items: center;
@@ -243,19 +240,6 @@ legend.question-header ~ * {
 
 .no-scroll {
   overflow: hidden !important;
-}
-
-
-@media (prefers-color-scheme: light) {
-  #content-wrapper {
-    --error-red: rgb(126, 2, 2);
-  }
-  .error-tooltip {
-    --err-bg-color: rgba(59, 58, 58, 0.6);
-  }
-  #modal {
-    --faded-bg: rgba(237, 240, 224, 0.85);
-  }
 }
 
 @keyframes slide-up {

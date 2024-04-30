@@ -29,7 +29,7 @@
   padding: 0.75rem 1rem;
   font-size: 1.4rem;
   background: var(--primary);
-  color: var(--background);
+  color: #1d2108;
   border-radius: 2px 2px 5px 5px;
   min-width: var(--profile-min-width);
   min-height: var(--profile-min-height); 
@@ -98,23 +98,18 @@
   transition: color 200ms;
 }
 .pet-profile button:hover {
-  filter: hue-rotate(-45deg);
+  filter: hue-rotate(55deg);
   border-radius: 25px;
 }
 .pet-profile button:hover i {
   color: rgb(243, 153, 198);
 }
-@media (prefers-color-scheme: light) {
-  .pet-profile {
-    color: var(--text);
-  }
-  .pet-profile button:hover {
-    filter: hue-rotate(55deg);
-  }
-}
 
 .greyscale {
-  filter: grayscale(0.9);
+  filter: grayscale(0.96);
+}
+body.dark-mode .greyscale {
+  filter: grayscale(0.8);
 }
 .greyscale .pet-name {
   text-decoration: underline;
@@ -124,5 +119,5 @@
 }
 .greyscale img {
   object-fit: contain;
-  border: none;
+  /* border: none; */
 }
