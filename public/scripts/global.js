@@ -36,7 +36,6 @@ switcher.addEventListener('click', function() {
     document.cookie = 'theme=dark; max-age=86400; samesite=lax';
   }
   document.getElementsByTagName('body')[0].classList.toggle('dark-mode');
-  console.log(document.cookie)
 });
 
 // set-up the theme

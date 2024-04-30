@@ -250,7 +250,7 @@ body {
   position: absolute;
   text-align: center;
   padding-block: 0.75rem;
-  background: red;
+  background: var(--error-red);
   box-shadow: rgb(230, 90, 90) 0 0 5px;
   bottom: 10%;
   left: 0;
