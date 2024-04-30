@@ -151,15 +151,6 @@ router.get('/cat-care', (req, res) => {
   });
 });
 
-router.get('/contact', (req, res) => {
-  res.render('contact', {
-    title: 'Contact Us!',
-    extraStylesheet: '/assets/styles/contact.css',
-    currentRoute: '/contact',
-    sessionName: req.session.username
-  });
-});
-
 router.get('/credits', (req, res) => {
   res.render('credits', {
     title: 'Credits',
