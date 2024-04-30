@@ -232,6 +232,26 @@ body {
   overflow-y: auto;
 }
 
+#size-warning {
+  display: none;
+  position: absolute;
+  text-align: center;
+  padding-block: 0.75rem;
+  background: red;
+  box-shadow: rgb(230, 90, 90) 0 0 5px;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  font-size: 1.6rem;
+  z-index: 100;
+}
+
+@media (max-width: 750px) {
+  #size-warning {
+    display: block;
+  }
+}
+
 /* FOOTER */
 footer {
   position: fixed;
