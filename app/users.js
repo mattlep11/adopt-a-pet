@@ -36,7 +36,7 @@ export async function collidesUsername(path, username) {
 }
 
 function hasSymbol(str) {
-  /[!@#$%^&*()\-_=+{}[\]\\|;:'",<.>/?`~]/.test(str);
+  return /[!@#$%^&*()\-_=+{}[\]\\|;'",<.>/?`~]/.test(str);
 }
 
 const maxLength = 64;
@@ -57,14 +57,15 @@ export function validateSignIn(user) {
 export function validateAccountCreation(newUser) {
   let status = { ok: true, errors: [] };
 
-  if (newUser.user.length < 5 || hasSymbol(newUser.user)) {
+  if (newUser.user.length < 5) {
     status.ok = false;
     status.errors.push('Username does not meet criteria');
   }
   if (newUser.pass.length < 8
-    || !/[A-Za-z]/.test(newUser.pass)
+    || /:/.test(newUser.pass)
     || !/\d/.test(newUser.pass)
-    || hasSymbol(newUser.pass)) {
+    || !hasSymbol(newUser.pass)) {
+      console.log(!hasSymbol(newUser.pass))
       status.ok = false;
       status.errors.push('Password does not meet criteria.');
   }

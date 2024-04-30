@@ -52,15 +52,15 @@ function swapForms(from, to) {
 
 // checks if a string has a symbol
 function hasSymbol(str) {
-  return /[!@#$%^&*()\-_=+{}[\]\\|;:'",<.>/?`~]/.test(str);
+  return /[!@#$%^&*()\-_=+{}[\]\\|;'",<.>/?`~]/.test(str);
 }
 
 // validates >8 characters, at least 1 number and 1 symbol
 function validatePassword(pass) {
   return pass.length >= 8
-    && /[A-Za-z]/.test(pass) // one letter
+    && !/:/.test(pass) // no colon
     && /\d/.test(pass) // one number
-    && !hasSymbol(pass); // no symbols
+    && hasSymbol(pass); // one symbols
 }
 
 
@@ -68,7 +68,7 @@ function validatePassword(pass) {
 function validateAccountCreation(form) {
   let valid = [true, true, true];
   const inputs = form.getElementsByTagName('input');
-  if (inputs[0].value.length < 5 || hasSymbol(inputs[0].value)) {
+  if (inputs[0].value.length < 5) {
     inputs[0].nextElementSibling.style.color = 'var(--error-red)';
     valid[0] = false;
   }
